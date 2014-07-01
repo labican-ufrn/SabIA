@@ -1,3 +1,5 @@
 /*
 !/src/
 !.gitignore
+!/WebContent/
+/WebContent/WEB-INF/lib
