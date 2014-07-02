@@ -2,79 +2,79 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <title>
-            <ui:insert name="titulo_pagina"></ui:insert>
-        </title>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="titulo_pagina"></ui:insert></title>
 
-        <h:outputStylesheet name="importantstyle.min.css" library="css" />
-        <h:outputStylesheet name="importantstyle-responsive.min.css" library="css" />
-        <h:outputStylesheet name="fullcalendar.css" library="css" />
-        <h:outputStylesheet name="style.css" library="css" />
-        <h:outputStylesheet name="media.css" library="css" />
-                
-    </h:head>
+	<h:outputStylesheet name="importantstyle.min.css" library="css" />
+	<h:outputStylesheet name="importantstyle-responsive.min.css"
+		library="css" />
+	<h:outputStylesheet name="fullcalendar.css" library="css" />
+	<h:outputStylesheet name="style.css" library="css" />
+	<h:outputStylesheet name="media.css" library="css" />
 
-    <h:body onload="var path = topo();">
-        
-        
+</h:head>
 
-        <ui:insert name="topo" id="Topo">
-            
-            <ui:include src="/partes_comuns/topos/topo.xhtml" id="topoPath">
-                
-            </ui:include>
-        </ui:insert>                                
+<h:body onload="var path = topo();">
 
-        <div id="content">
 
-            <ui:insert name="content-header">
-                <ui:include src="/partes_comuns/topos/content-header.xhtml"/>
-            </ui:insert>    
 
-            <div class="container-fluid">
+	<ui:insert name="topo" id="Topo">
 
-                <ui:insert name="content-header">
-                    <ui:include src="/partes_comuns/topos/main_options_adm.xhtml"/>
-                </ui:insert>
+		<ui:include src="/partes_comuns/topos/topo.xhtml" id="topoPath">
 
-                <div class="row-fluid center-content">
+		</ui:include>
+	</ui:insert>
 
-                    <div class="row-fluid">
+	<div id="content">
 
-                        <div class="span12">
+		<ui:insert name="content-header">
+			<ui:include src="/partes_comuns/topos/content-header.xhtml" />
+		</ui:insert>
 
-                            <div class="span6 width100">
+		<div class="container-fluid">
 
-                                <div class="widget-box">
+			<ui:insert name="content-header">
+				<ui:include src="/partes_comuns/topos/main_options_adm.xhtml" />
+			</ui:insert>
 
-                                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                                        <h5><ui:insert name="titulo_pagina"></ui:insert></h5>
-                                    </div>
+			<div class="row-fluid center-content">
 
-                                    <div class="widget-content nopadding">
-                                        <ui:insert name="form_manutencao"></ui:insert>
-                                    </div>
+				<div class="row-fluid">
 
-                                </div>
+					<div class="span12">
 
-                            </div>
+						<div class="span6 width100">
 
-                        </div>
+							<div class="widget-box">
 
-                    </div>
+								<div class="widget-title">
+									<span class="icon"> <i class="icon-align-justify"></i>
+									</span>
+									<h5>
+										<ui:insert name="titulo_pagina"></ui:insert>
+									</h5>
+								</div>
 
-                </div>
+								<div class="widget-content nopadding">
+									<ui:insert name="form_manutencao"></ui:insert>
+								</div>
 
-            </div>
+							</div>
 
-        </div>
+						</div>
 
-        <ui:insert name="rodape">
-            <ui:include src="/partes_comuns/rodape.xhtml"/>
-        </ui:insert>
-  
-    </h:body>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ui:insert name="rodape">
+		<ui:include src="/partes_comuns/rodape.xhtml" />
+	</ui:insert>
+
+</h:body>
 </html>
