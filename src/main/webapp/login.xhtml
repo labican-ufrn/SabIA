@@ -3,10 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <h:head>
         <title>Projeto SabIA - Login</title><meta charset="ISO-8859-1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,50 +14,42 @@
     </h:head>
     <body>
         <div id="loginbox">            
-            <h:form id="loginform" class="form-vertical">
+            <form id="loginform" action="j_spring_security_check" method="post">
                 <div class="control-group normal_text"> <h3>Projeto SabIA</h3></div>
                 <div class="control-group">
-                    <h:messages style="color: red">
-                        <h:message for="loginform" style="color:red"/>
-                    </h:messages>
                     <div class="controls" id="divLogin">
                         <div class="main_input_box">
                             <i class="icon-user"></i>
-                            Usuário: <h:inputText id="Usuario" maxlength="10" required="true" requiredMessage="Campo Obrigatório" />
-                            
+                            Usuário: <p:inputText id="j_username"
+                                                  required="true" 
+                                                  requiredMessage="Campo Obrigatório" />
+                            <p:message for="j_username"/>
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
-                    <div class="controls">
+                    <div class="controls" id="divSenha">
                         <div class="main_input_box">
                             <i class="icon-lock"></i>
-                            Senha: <h:inputSecret id="senha" alt="Senha" maxlength="30" requiredMessage="Campo Obrigatório" required="true"/>
-                            <message for="senha"/>
+                            Senha: <p:password id="j_password" alt="Senha" requiredMessage="Campo Obrigatório" required="true"/>
+                            <p:message for="j_password"/>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-actions">
-                    <span class="pull-right"><h:commandButton class="btn btn-success" value="Entar" id="btLogin"/></span>
+                    <span class="pull-right"><h:commandButton class="btn btn-success" value="Entrar" id="btLogin"/></span>
                     <span class="pull-left"><a href ="#" class="flip-link btn-inverse" id="to-recover">Esqueceu a senha?</a></span>
                 </div>
-                <div class="controls-row">
-                    <span class="pull-right"><a href="#" value="Cadastre-se" class=" btn" id="btCadastrar">Cadastre-se</a></span>
-                    <!--span class="pull-left"><a id="Voltar" href="javascript:history.back()" class="flip-link btn btn-inverse">&laquo; Voltar</a></span-->
-                    
-                </div>
                 <!-- Botão de cadastro !-->
-                
-              
-                
-            </h:form>
+            </form>
             <form id="recoverform" action="#" class="form-vertical">
                 <p class="normal_text">Digite um endereço de e-mail, enviaremos instruções de como recuperar sua senha. </p>
 
                 <div class="controls">
                     <div class="main_input_box">
-                        <i class="icon-envelope"></i><input type="text" placeholder="Endereço de e-mail" />
+                        <i class="icon-envelope"></i>
+                        <input type="text" placeholder="Endereço de e-mail" />
                     </div>
                 </div>
 
@@ -70,23 +60,23 @@
             </form>
         </div>
 
-        <script src="js/jquery.min.js"></script>  
-        
+        <!--<script src="js/jquery.min.js"></script>  
+
         <script src="js/jscript.login.js"></script>
-        
+
         <script type="js/jquery.">
             jQuery(function($){
-                history.back();
+            history.back();
             });
-        </script>
+        </script>-->
         <!--script>            
             $("form1:loginform").click();
         </script-->
-        
-        <script type="js/jquery.mask.js">
+
+        <!--<script type="js/jquery.mask.js">
             jQuery(function($){
-                $("#Usuario").mask("9999999999");
+            $("#Usuario").mask("9999999999");
             });
-        </script>
+        </script>-->
     </body>
 </html>
