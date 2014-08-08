@@ -20,11 +20,11 @@
             <artifactId>primefaces</artifactId>
             <version>5.0</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>net.sf.jgap</groupId>
             <artifactId>jgap</artifactId>
             <version>3.4.4</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
