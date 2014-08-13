@@ -11,11 +11,16 @@
         <h:outputStylesheet name="importantstyle.min.css" library="css" />
         <h:outputStylesheet name="importantstyle-responsive.min.css" library="css" />
         <h:outputStylesheet name="login.css" library="css" />
+        <h:outputScript name="jquery.min.js" library="js"/>
+        <h:outputScript name="jscript.login.js" library="js"/>
     </h:head>
     <body>
         <div id="loginbox">            
             <form id="loginform" action="j_spring_security_check" method="post">
                 <div class="control-group normal_text"> <h3>Projeto SabIA</h3></div>
+                <p:outputLabel style="color:red;text-align: center" 
+                               value="Login ou senha incorreto"
+                               rendered="#{param.erro}"/>
                 <div class="control-group">
                     <div class="controls" id="divLogin">
                         <div class="main_input_box">
@@ -59,24 +64,5 @@
                 </div>
             </form>
         </div>
-
-        <!--<script src="js/jquery.min.js"></script>  
-
-        <script src="js/jscript.login.js"></script>
-
-        <script type="js/jquery.">
-            jQuery(function($){
-            history.back();
-            });
-        </script>-->
-        <!--script>            
-            $("form1:loginform").click();
-        </script-->
-
-        <!--<script type="js/jquery.mask.js">
-            jQuery(function($){
-            $("#Usuario").mask("9999999999");
-            });
-        </script>-->
     </body>
 </html>
