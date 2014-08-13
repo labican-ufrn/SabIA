@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>Dados Profissionais</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="panel" header="Dados Profissionais">
+
+                <h:panelGrid columns="3">
+                                                     
+                    <h:outputLabel for="titulacao" value="Titulação: " />  
+                    <h:selectOneMenu id="titulacao" requiredMessage="Campo Obrigatório" required="true">
+                        <f:selectItem itemLabel="Selecione uma Titulação" itemValue=""/>
+                        <f:selectItems var="c"/>
+                    </h:selectOneMenu>
+                    <p:message for="titulacao"/>
+                    
+                    <h:outputLabel for="exp_ensino" value="Experiência de Ensino - Desde: " />  
+                    <p:calendar id="exp_ensino" pattern="yyyy" required="true" requiredMessage="Campo Obrigatório" />
+                    <p:message for="exp_ensino"/>
+                    
+                    <h:outputLabel for="curriculo_lattes" value="Link para Currículo Lattes: " />  
+                    <p:inputText id="curriculo_lattes" label="CurriculoLattes"/>
+                    <p:message for="curriculo_lattes"/>
+                    
+                    <h:outputLabel for="eixo_tecnologico" value="Eixo Tecnológico: " />
+                    <h:selectOneMenu id="eixo_tecnologico" requiredMessage="Campo Obrigatório" required="true">
+                        <f:selectItem itemLabel="Selecione um eixo tecnologico" itemValue=""/>
+                        <f:selectItems var="c"/>
+                    </h:selectOneMenu>
+                    <p:message for="eixo_tecnologico"/>
+                    
+                    <h:outputLabel for="rede_unid_ensino" value="Rede da Unidade de Ensino: " />  
+                    <h:selectOneMenu id="rede_unid_ensino" requiredMessage="Campo Obrigatório" required="true">
+                        <f:selectItem itemLabel="Selecione Rede da Unidade de Ensino" itemValue=""/>
+                        <f:selectItems var="c"/>
+                    </h:selectOneMenu>
+                    <p:message for="rede_unid_ensino"/>
+                    
+                </h:panelGrid>
+                
+            </p:panel>
+            <br/>
+        </h:form>
+    </h:body>
+</html>
