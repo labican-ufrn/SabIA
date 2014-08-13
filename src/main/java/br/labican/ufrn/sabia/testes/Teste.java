@@ -1,18 +1,18 @@
 package br.labican.ufrn.sabia.testes;
-
 import java.util.List;
-
 import br.labican.ufrn.sabia.dao.AutorizacaoJpaController;
 import br.labican.ufrn.sabia.dao.UsuarioJpaController;
 import br.labican.ufrn.sabia.modelo.Autorizacao;
 import br.labican.ufrn.sabia.modelo.Usuario;
 import br.labican.ufrn.sabia.util.Util;
 
+
 /**
  *
  * @author Rummenigge Maia
  */
 public class Teste {
+
 
 	public static void main(String[] asd) {
 		 AutorizacaoJpaController ajc = new
