@@ -18,9 +18,11 @@ public class Teste {
         AutorizacaoJpaController ajc = new AutorizacaoJpaController(Util.EMF);
         List<Autorizacao> as = ajc.findAutorizacaoEntities();
         
+        as.remove(0);
+        
         Usuario u = new Usuario();
-        u.setUsername("Rummenigge");
-        u.setPassword("asd123");
+        u.setUsername("teletambis");
+        u.setPassword("123");
         u.setAtivo(true);        
         u.setAutorizacoes(as);
         
