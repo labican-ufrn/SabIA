@@ -20,18 +20,18 @@
 
     <h:body onload="var path = topo();">
         <ui:insert name="topo" id="Topo">
-            <ui:include src="/WEB-INF/partes_comuns/topos/topo.xhtml" id="topoPath"> 
+            <ui:include src="/partes_comuns/topos/topo.xhtml" id="topoPath"> 
             </ui:include>
         </ui:insert>                                
 
         <div id="content">
             <ui:insert name="content-header">
-                <ui:include src="/WEB-INF/partes_comuns/topos/content-header.xhtml"/>
+                <ui:include src="/partes_comuns/topos/content-header.xhtml"/>
             </ui:insert>    
 
             <div class="container-fluid">
                 <ui:insert name="content-header">
-                    <ui:include src="/WEB-INF/partes_comuns/topos/main_options.xhtml"/>
+                    <ui:include src="/partes_comuns/topos/main_options.xhtml"/>
                 </ui:insert>
 
                 <div class="row-fluid center-content">
@@ -54,7 +54,7 @@
         </div>
 
         <ui:insert name="rodape">
-            <ui:include src="/WEB-INF/partes_comuns/rodape.xhtml"/>
+            <ui:include src="/partes_comuns/rodape.xhtml"/>
         </ui:insert>
 
     </h:body>
