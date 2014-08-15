@@ -1,5 +1,4 @@
-target/
 /*
 !/src/
-!.gitignore
-!pom.xml
+!/.gitignore
+!/pom.xml
