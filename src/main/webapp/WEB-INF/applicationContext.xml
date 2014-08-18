@@ -11,7 +11,7 @@
         <s:form-login login-page="/login.jsf"
                       authentication-failure-url="/login.jsf?erro=true"
                       default-target-url="/sistema/template.jsf"/>         
-        <s:intercept-url pattern="/sistema/**" access="hasRole('ROLE_USER')"/>
+        <s:intercept-url pattern="/sistema/**" access="hasRole('ROLE_ADMIN')"/>
     </s:http>
     
     <s:authentication-manager>
