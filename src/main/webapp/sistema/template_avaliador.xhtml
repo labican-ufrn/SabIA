@@ -2,7 +2,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="template.xhtml">
+                template="/sistema/template.xhtml">
     <ui:define name="titulo_pagina">
         Avaliador
     </ui:define>
@@ -10,27 +10,26 @@
         <p:tabView id="tabView"  >
             <p:tab id="tab1" title="Pessoal" >
                 <h:panelGrid columns="1" cellpadding="1" >
-                    <ui:include src="/partes_comuns/dados_pessoais/dados_pessoais.xhtml"/>
+                    <ui:include src="/WEB-INF/partes_comuns/dados_pessoais/dados_pessoais.xhtml"/>
                 </h:panelGrid>
             </p:tab>
 
-
             <p:tab id="tab3" title="Bancário">
                 <h:panelGrid columns="1" cellpadding="1">
-                    <ui:include src="/partes_comuns/dados_pessoais/dados_bancarios.xhtml"/>
+                    <ui:include src="/WEB-INF/partes_comuns/dados_pessoais/dados_bancarios.xhtml"/>
                 </h:panelGrid>
             </p:tab>
 
             <p:tab id="tab2" title="Profissional">
                 <h:panelGrid columns="1" cellpadding="1">
-                    <ui:include src="/partes_comuns/dados_pessoais/dados_profissionais.xhtml"/>
+                    <ui:include src="/WEB-INF/partes_comuns/dados_pessoais/dados_profissionais.xhtml"/>
                 </h:panelGrid>
             </p:tab>
 
 
             <p:tab id="tab4" title="Eixo Tecnológico">
                 <h:panelGrid columns="1" cellpadding="1">
-                    <ui:include src="/partes_comuns/dados_pessoais/dados_eixos_tecnologicos.xhtml"/>
+                    <ui:include src="/WEB-INF/partes_comuns/dados_pessoais/dados_eixos_tecnologicos.xhtml"/>
                 </h:panelGrid>
             </p:tab>
 
