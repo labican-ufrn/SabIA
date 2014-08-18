@@ -1,8 +1,8 @@
+
+
 package br.labican.ufrn.sabia.negocio;
 
 import br.labican.ufrn.sabia.modelo.Usuario;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,12 +10,10 @@ import org.springframework.security.core.userdetails.User;
 
 /**
  *
- * @author Rummenigge
+ * @author Rummenigge Maia
  */
-@ManagedBean
-@SessionScoped
 public class LoginMB {
-
+    
     private Usuario usuario;
 
     public LoginMB() {
