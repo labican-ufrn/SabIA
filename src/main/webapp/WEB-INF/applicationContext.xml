@@ -6,7 +6,7 @@
                             http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
                             http://www.springframework.org/schema/security 
                             http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-
+	<!-- com role admin -->
     <s:http auto-config="true" use-expressions="true" >
         <s:form-login login-page="/login.jsf"
                       authentication-failure-url="/login.jsf?erro=true"
@@ -19,7 +19,7 @@
             <s:jdbc-user-service 
                 data-source-ref="dataSource"
                 users-by-username-query="select username, password, ativo from usuario where username = ? and ativo = true"
-                authorities-by-username-query="select a.id, a.perfil from usuario u, usuario_autorizacao ua, autorizacao a where u.id = ua.usuarios_id and u.username = ? group by a.id"/>
+                authorities-by-username-query="select a.id, a.perfil from usuario u, usuario_autorizacao ua, autorizacao a where u.id = ua.usuarios_id and a.id = ua.autorizacoes_id and u.username = ?"/>
         </s:authentication-provider>
     </s:authentication-manager>
     
