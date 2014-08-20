@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.User;
  *
  * @author Rummenigge Maia
  */
+ @ManagedBean
+ @SessionScoped
 public class LoginMB {
     
     private Usuario usuario;
