@@ -4,6 +4,12 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.labican.ufrn.sabia.modelo.Autorizacao</class>
     <class>br.labican.ufrn.sabia.modelo.Usuario</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Cidade</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Estado</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Macrorregiao</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Mesorregiao</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Microrregiao</class>
+    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Pais</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sabiabd"/>
