@@ -13,28 +13,25 @@ import java.util.List;
  * @author Rummenigge Maia
  */
 public class Teste {
-    
+
     public static void main(String[] asd) {
         AutorizacaoJpaController ajc = new AutorizacaoJpaController(Util.EMF);
         List<Autorizacao> as = ajc.findAutorizacaoEntities();
-        
-        as.remove(0);
-        
-        Usuario u = new Usuario();
-        u.setUsername("teletambis");
-        u.setPassword("123");
-        u.setAtivo(true);        
-        u.setAutorizacoes(as);
-        
-        UsuarioJpaController ujc = new UsuarioJpaController(Util.EMF);
-        ujc.create(u);
-        
-        /*Autorizacao a1 = new Autorizacao(null, "ROLE_ADMIN");
+
+        Autorizacao a1 = new Autorizacao(null, "ROLE_ADMIN");
         Autorizacao a2 = new Autorizacao(null, "ROLE_AVALI");
         Autorizacao a3 = new Autorizacao(null, "ROLE_OPERA");
-        AutorizacaoJpaController ajc = new AutorizacaoJpaController(Util.EMF);
         ajc.create(a1);
         ajc.create(a2);
-        ajc.create(a3);*/
+        ajc.create(a3);
+
+        Usuario u = new Usuario();
+        u.setUsername("hyago");
+        u.setPassword("asd123");
+        u.setAtivo(true);
+        u.setAutorizacoes(as);
+
+        UsuarioJpaController ujc = new UsuarioJpaController(Util.EMF);
+        ujc.create(u);
     }
 }
