@@ -96,9 +96,9 @@
 			<version>1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+			<version>9.3-1100-jdbc4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -109,6 +109,11 @@
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.1</version>
 		</dependency>
 	</dependencies>
 	<build>
