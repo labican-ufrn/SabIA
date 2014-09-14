@@ -17,7 +17,7 @@ public class Microrregiao implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_microrregiao")
-	private Integer idMicrorregiao;
+	private Integer idMicrorregiao = 0;
 
 	@Column(name="cod_ibge_microrregiao")
 	private Integer codIbgeMicrorregiao;
