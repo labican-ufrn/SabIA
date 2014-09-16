@@ -1,40 +1,41 @@
 package br.labican.ufrn.sabia.modelo.cadastroibge;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.*;
+
+import java.util.List;
 
 /**
  * The persistent class for the mesorregiao database table.
  * 
  */
 @Entity
-@NamedQuery(name="Mesorregiao.findAll", query="SELECT m FROM Mesorregiao m")
+@NamedQuery(name = "Mesorregiao.findAll", query = "SELECT m FROM Mesorregiao m")
 public class Mesorregiao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_mesorregiao")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_mesorregiao")
 	private Integer idMesorregiao;
 
-	@Column(name="cod_ibge_mesorregiao")
+	@Column(name = "cod_ibge_mesorregiao")
 	private Integer codIbgeMesorregiao;
 
-	@Column(name="nome_mesorregiao")
+	@Column(name = "nome_mesorregiao")
 	private String nomeMesorregiao;
 
-	@Column(name="sigla_mesorregiao")
+	@Column(name = "sigla_mesorregiao")
 	private String siglaMesorregiao;
 
-	//bi-directional many-to-one association to Estado
+	// bi-directional many-to-one association to Estado
 	@ManyToOne
-	@JoinColumn(name="cod_estado")
+	@JoinColumn(name = "cod_estado")
 	private Estado estado;
 
-	//bi-directional many-to-one association to Microrregiao
-	@OneToMany(mappedBy="mesorregiao")
+	// bi-directional many-to-one association to Microrregiao
+	@OneToMany(mappedBy = "mesorregiao", cascade = CascadeType.ALL)
 	private List<Microrregiao> microrregiaos;
 
 	public Mesorregiao() {
@@ -101,5 +102,4 @@ public class Mesorregiao implements Serializable {
 
 		return microrregiao;
 	}
-
 }

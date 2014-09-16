@@ -36,38 +36,11 @@ public class EstadoJpaController implements Serializable {
     }
 
     public void create(Estado estado) {
-        if (estado.getMesorregiaos() == null) {
-            estado.setMesorregiaos(new ArrayList<Mesorregiao>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Macrorregiao macrorregiao = estado.getMacrorregiao();
-            if (macrorregiao != null) {
-                macrorregiao = em.getReference(macrorregiao.getClass(), macrorregiao.getIdMacrorregiao());
-                estado.setMacrorregiao(macrorregiao);
-            }
-            List<Mesorregiao> attachedMesorregiaos = new ArrayList<Mesorregiao>();
-            for (Mesorregiao mesorregiaosMesorregiaoToAttach : estado.getMesorregiaos()) {
-                mesorregiaosMesorregiaoToAttach = em.getReference(mesorregiaosMesorregiaoToAttach.getClass(), mesorregiaosMesorregiaoToAttach.getIdMesorregiao());
-                attachedMesorregiaos.add(mesorregiaosMesorregiaoToAttach);
-            }
-            estado.setMesorregiaos(attachedMesorregiaos);
             em.persist(estado);
-            if (macrorregiao != null) {
-                macrorregiao.getEstados().add(estado);
-                macrorregiao = em.merge(macrorregiao);
-            }
-            for (Mesorregiao mesorregiaosMesorregiao : estado.getMesorregiaos()) {
-                Estado oldEstadoOfMesorregiaosMesorregiao = mesorregiaosMesorregiao.getEstado();
-                mesorregiaosMesorregiao.setEstado(estado);
-                mesorregiaosMesorregiao = em.merge(mesorregiaosMesorregiao);
-                if (oldEstadoOfMesorregiaosMesorregiao != null) {
-                    oldEstadoOfMesorregiaosMesorregiao.getMesorregiaos().remove(mesorregiaosMesorregiao);
-                    oldEstadoOfMesorregiaosMesorregiao = em.merge(oldEstadoOfMesorregiaosMesorregiao);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -81,48 +54,7 @@ public class EstadoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estado persistentEstado = em.find(Estado.class, estado.getIdEstado());
-            Macrorregiao macrorregiaoOld = persistentEstado.getMacrorregiao();
-            Macrorregiao macrorregiaoNew = estado.getMacrorregiao();
-            List<Mesorregiao> mesorregiaosOld = persistentEstado.getMesorregiaos();
-            List<Mesorregiao> mesorregiaosNew = estado.getMesorregiaos();
-            if (macrorregiaoNew != null) {
-                macrorregiaoNew = em.getReference(macrorregiaoNew.getClass(), macrorregiaoNew.getIdMacrorregiao());
-                estado.setMacrorregiao(macrorregiaoNew);
-            }
-            List<Mesorregiao> attachedMesorregiaosNew = new ArrayList<Mesorregiao>();
-            for (Mesorregiao mesorregiaosNewMesorregiaoToAttach : mesorregiaosNew) {
-                mesorregiaosNewMesorregiaoToAttach = em.getReference(mesorregiaosNewMesorregiaoToAttach.getClass(), mesorregiaosNewMesorregiaoToAttach.getIdMesorregiao());
-                attachedMesorregiaosNew.add(mesorregiaosNewMesorregiaoToAttach);
-            }
-            mesorregiaosNew = attachedMesorregiaosNew;
-            estado.setMesorregiaos(mesorregiaosNew);
-            estado = em.merge(estado);
-            if (macrorregiaoOld != null && !macrorregiaoOld.equals(macrorregiaoNew)) {
-                macrorregiaoOld.getEstados().remove(estado);
-                macrorregiaoOld = em.merge(macrorregiaoOld);
-            }
-            if (macrorregiaoNew != null && !macrorregiaoNew.equals(macrorregiaoOld)) {
-                macrorregiaoNew.getEstados().add(estado);
-                macrorregiaoNew = em.merge(macrorregiaoNew);
-            }
-            for (Mesorregiao mesorregiaosOldMesorregiao : mesorregiaosOld) {
-                if (!mesorregiaosNew.contains(mesorregiaosOldMesorregiao)) {
-                    mesorregiaosOldMesorregiao.setEstado(null);
-                    mesorregiaosOldMesorregiao = em.merge(mesorregiaosOldMesorregiao);
-                }
-            }
-            for (Mesorregiao mesorregiaosNewMesorregiao : mesorregiaosNew) {
-                if (!mesorregiaosOld.contains(mesorregiaosNewMesorregiao)) {
-                    Estado oldEstadoOfMesorregiaosNewMesorregiao = mesorregiaosNewMesorregiao.getEstado();
-                    mesorregiaosNewMesorregiao.setEstado(estado);
-                    mesorregiaosNewMesorregiao = em.merge(mesorregiaosNewMesorregiao);
-                    if (oldEstadoOfMesorregiaosNewMesorregiao != null && !oldEstadoOfMesorregiaosNewMesorregiao.equals(estado)) {
-                        oldEstadoOfMesorregiaosNewMesorregiao.getMesorregiaos().remove(mesorregiaosNewMesorregiao);
-                        oldEstadoOfMesorregiaosNewMesorregiao = em.merge(oldEstadoOfMesorregiaosNewMesorregiao);
-                    }
-                }
-            }
+            em.merge(estado);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -151,16 +83,6 @@ public class EstadoJpaController implements Serializable {
                 estado.getIdEstado();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The estado with id " + id + " no longer exists.", enfe);
-            }
-            Macrorregiao macrorregiao = estado.getMacrorregiao();
-            if (macrorregiao != null) {
-                macrorregiao.getEstados().remove(estado);
-                macrorregiao = em.merge(macrorregiao);
-            }
-            List<Mesorregiao> mesorregiaos = estado.getMesorregiaos();
-            for (Mesorregiao mesorregiaosMesorregiao : mesorregiaos) {
-                mesorregiaosMesorregiao.setEstado(null);
-                mesorregiaosMesorregiao = em.merge(mesorregiaosMesorregiao);
             }
             em.remove(estado);
             em.getTransaction().commit();
