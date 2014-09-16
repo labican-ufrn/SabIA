@@ -84,5 +84,4 @@ public class Macrorregiao implements Serializable {
 
 		return estado;
 	}
-
 }

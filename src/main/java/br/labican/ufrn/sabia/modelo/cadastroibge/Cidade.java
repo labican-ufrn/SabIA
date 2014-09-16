@@ -16,7 +16,7 @@ public class Cidade implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_cidade")
-	private Integer idCidade;
+	private Integer idCidade = 0;
 
 	@Column(name="cod_ibge_cidade")
 	private Integer codIbgeCidade;

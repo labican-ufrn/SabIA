@@ -103,5 +103,4 @@ public class Estado implements Serializable {
 
 		return mesorregiao;
 	}
-
 }
