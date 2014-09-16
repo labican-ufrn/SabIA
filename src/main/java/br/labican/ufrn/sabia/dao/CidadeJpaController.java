@@ -38,16 +38,7 @@ public class CidadeJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Microrregiao microrregiao = cidade.getMicrorregiao();
-            if (microrregiao != null) {
-                microrregiao = em.getReference(microrregiao.getClass(), microrregiao.getIdMicrorregiao());
-                cidade.setMicrorregiao(microrregiao);
-            }
             em.persist(cidade);
-            if (microrregiao != null) {
-                microrregiao.getCidades().add(cidade);
-                microrregiao = em.merge(microrregiao);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -61,22 +52,7 @@ public class CidadeJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Cidade persistentCidade = em.find(Cidade.class, cidade.getIdCidade());
-            Microrregiao microrregiaoOld = persistentCidade.getMicrorregiao();
-            Microrregiao microrregiaoNew = cidade.getMicrorregiao();
-            if (microrregiaoNew != null) {
-                microrregiaoNew = em.getReference(microrregiaoNew.getClass(), microrregiaoNew.getIdMicrorregiao());
-                cidade.setMicrorregiao(microrregiaoNew);
-            }
             cidade = em.merge(cidade);
-            if (microrregiaoOld != null && !microrregiaoOld.equals(microrregiaoNew)) {
-                microrregiaoOld.getCidades().remove(cidade);
-                microrregiaoOld = em.merge(microrregiaoOld);
-            }
-            if (microrregiaoNew != null && !microrregiaoNew.equals(microrregiaoOld)) {
-                microrregiaoNew.getCidades().add(cidade);
-                microrregiaoNew = em.merge(microrregiaoNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -105,11 +81,6 @@ public class CidadeJpaController implements Serializable {
                 cidade.getIdCidade();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The cidade with id " + id + " no longer exists.", enfe);
-            }
-            Microrregiao microrregiao = cidade.getMicrorregiao();
-            if (microrregiao != null) {
-                microrregiao.getCidades().remove(cidade);
-                microrregiao = em.merge(microrregiao);
             }
             em.remove(cidade);
             em.getTransaction().commit();

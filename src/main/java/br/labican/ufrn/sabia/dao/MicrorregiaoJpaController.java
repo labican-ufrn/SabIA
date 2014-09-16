@@ -36,38 +36,11 @@ public class MicrorregiaoJpaController implements Serializable {
     }
 
     public void create(Microrregiao microrregiao) {
-        if (microrregiao.getCidades() == null) {
-            microrregiao.setCidades(new ArrayList<Cidade>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Mesorregiao mesorregiao = microrregiao.getMesorregiao();
-            if (mesorregiao != null) {
-                mesorregiao = em.getReference(mesorregiao.getClass(), mesorregiao.getIdMesorregiao());
-                microrregiao.setMesorregiao(mesorregiao);
-            }
-            List<Cidade> attachedCidades = new ArrayList<Cidade>();
-            for (Cidade cidadesCidadeToAttach : microrregiao.getCidades()) {
-                cidadesCidadeToAttach = em.getReference(cidadesCidadeToAttach.getClass(), cidadesCidadeToAttach.getIdCidade());
-                attachedCidades.add(cidadesCidadeToAttach);
-            }
-            microrregiao.setCidades(attachedCidades);
             em.persist(microrregiao);
-            if (mesorregiao != null) {
-                mesorregiao.getMicrorregiaos().add(microrregiao);
-                mesorregiao = em.merge(mesorregiao);
-            }
-            for (Cidade cidadesCidade : microrregiao.getCidades()) {
-                Microrregiao oldMicrorregiaoOfCidadesCidade = cidadesCidade.getMicrorregiao();
-                cidadesCidade.setMicrorregiao(microrregiao);
-                cidadesCidade = em.merge(cidadesCidade);
-                if (oldMicrorregiaoOfCidadesCidade != null) {
-                    oldMicrorregiaoOfCidadesCidade.getCidades().remove(cidadesCidade);
-                    oldMicrorregiaoOfCidadesCidade = em.merge(oldMicrorregiaoOfCidadesCidade);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -81,48 +54,7 @@ public class MicrorregiaoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Microrregiao persistentMicrorregiao = em.find(Microrregiao.class, microrregiao.getIdMicrorregiao());
-            Mesorregiao mesorregiaoOld = persistentMicrorregiao.getMesorregiao();
-            Mesorregiao mesorregiaoNew = microrregiao.getMesorregiao();
-            List<Cidade> cidadesOld = persistentMicrorregiao.getCidades();
-            List<Cidade> cidadesNew = microrregiao.getCidades();
-            if (mesorregiaoNew != null) {
-                mesorregiaoNew = em.getReference(mesorregiaoNew.getClass(), mesorregiaoNew.getIdMesorregiao());
-                microrregiao.setMesorregiao(mesorregiaoNew);
-            }
-            List<Cidade> attachedCidadesNew = new ArrayList<Cidade>();
-            for (Cidade cidadesNewCidadeToAttach : cidadesNew) {
-                cidadesNewCidadeToAttach = em.getReference(cidadesNewCidadeToAttach.getClass(), cidadesNewCidadeToAttach.getIdCidade());
-                attachedCidadesNew.add(cidadesNewCidadeToAttach);
-            }
-            cidadesNew = attachedCidadesNew;
-            microrregiao.setCidades(cidadesNew);
-            microrregiao = em.merge(microrregiao);
-            if (mesorregiaoOld != null && !mesorregiaoOld.equals(mesorregiaoNew)) {
-                mesorregiaoOld.getMicrorregiaos().remove(microrregiao);
-                mesorregiaoOld = em.merge(mesorregiaoOld);
-            }
-            if (mesorregiaoNew != null && !mesorregiaoNew.equals(mesorregiaoOld)) {
-                mesorregiaoNew.getMicrorregiaos().add(microrregiao);
-                mesorregiaoNew = em.merge(mesorregiaoNew);
-            }
-            for (Cidade cidadesOldCidade : cidadesOld) {
-                if (!cidadesNew.contains(cidadesOldCidade)) {
-                    cidadesOldCidade.setMicrorregiao(null);
-                    cidadesOldCidade = em.merge(cidadesOldCidade);
-                }
-            }
-            for (Cidade cidadesNewCidade : cidadesNew) {
-                if (!cidadesOld.contains(cidadesNewCidade)) {
-                    Microrregiao oldMicrorregiaoOfCidadesNewCidade = cidadesNewCidade.getMicrorregiao();
-                    cidadesNewCidade.setMicrorregiao(microrregiao);
-                    cidadesNewCidade = em.merge(cidadesNewCidade);
-                    if (oldMicrorregiaoOfCidadesNewCidade != null && !oldMicrorregiaoOfCidadesNewCidade.equals(microrregiao)) {
-                        oldMicrorregiaoOfCidadesNewCidade.getCidades().remove(cidadesNewCidade);
-                        oldMicrorregiaoOfCidadesNewCidade = em.merge(oldMicrorregiaoOfCidadesNewCidade);
-                    }
-                }
-            }
+            em.merge(microrregiao);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -151,16 +83,6 @@ public class MicrorregiaoJpaController implements Serializable {
                 microrregiao.getIdMicrorregiao();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The microrregiao with id " + id + " no longer exists.", enfe);
-            }
-            Mesorregiao mesorregiao = microrregiao.getMesorregiao();
-            if (mesorregiao != null) {
-                mesorregiao.getMicrorregiaos().remove(microrregiao);
-                mesorregiao = em.merge(mesorregiao);
-            }
-            List<Cidade> cidades = microrregiao.getCidades();
-            for (Cidade cidadesCidade : cidades) {
-                cidadesCidade.setMicrorregiao(null);
-                cidadesCidade = em.merge(cidadesCidade);
             }
             em.remove(microrregiao);
             em.getTransaction().commit();

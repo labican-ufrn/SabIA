@@ -1,7 +1,9 @@
 package br.labican.ufrn.sabia.modelo.cadastroibge;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -26,7 +28,7 @@ public class Microrregiao implements Serializable {
 	private String nomeMicrorregiao;
 
 	//bi-directional many-to-one association to Cidade
-	@OneToMany(mappedBy="microrregiao")
+	@OneToMany(mappedBy="microrregiao", cascade = CascadeType.ALL)
 	private List<Cidade> cidades;
 
 	//bi-directional many-to-one association to Mesorregiao
