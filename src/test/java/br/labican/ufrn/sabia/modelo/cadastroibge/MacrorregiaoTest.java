@@ -1,6 +1,7 @@
 package br.labican.ufrn.sabia.modelo.cadastroibge;
 
 import java.util.List;
+import java.util.Random;
 
 import junit.framework.Assert;
 
@@ -14,19 +15,26 @@ import br.labican.ufrn.sabia.util.Util;
 public class MacrorregiaoTest {
 
 	Macrorregiao macrorregiao;
+	Macrorregiao macrorregiao2;
 	MacrorregiaoJpaController macrorregiaoController;
+	Random gerador = new Random();
 
 	@Before
 	public void iniciar() throws Exception {
 		macrorregiaoController = new MacrorregiaoJpaController(Util.EMF);
 		macrorregiao = new Macrorregiao();
-		macrorregiao.setCodIbgeMacrorregiao(12345);
-		macrorregiao.setNomeMacrorregiao("nomeMacrorregiao");
+		macrorregiao.setCodIbgeMacrorregiao(gerador.nextInt(10000));
+		macrorregiao.setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
+		
+		macrorregiao2 = new Macrorregiao();
+		macrorregiao2.setCodIbgeMacrorregiao(gerador.nextInt(10000));
+		macrorregiao2.setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
 	}
 
 	@Test
 	public void testInserir() {
 		macrorregiaoController.create(macrorregiao);
+		macrorregiaoController.create(macrorregiao2);
 	}
 
 	@Test
@@ -38,8 +46,8 @@ public class MacrorregiaoTest {
 			macrorregiao = macros.get(0);
 		}
 
-		macrorregiao.setNomeMacrorregiao("macro 2");
-		macrorregiao.setCodIbgeMacrorregiao(54321);
+		macrorregiao.setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
+		macrorregiao.setCodIbgeMacrorregiao(gerador.nextInt(10000));
 		macrorregiaoController.edit(macrorregiao);
 	}
 
@@ -57,7 +65,7 @@ public class MacrorregiaoTest {
 		if (!macros.isEmpty()) {
 			macrorregiao = macros.get(0);
 			macrorregiaoController.destroy(macrorregiao
-					.getCodIbgeMacrorregiao());
+					.getIdMacrorregiao());
 		}
 	}
 }
