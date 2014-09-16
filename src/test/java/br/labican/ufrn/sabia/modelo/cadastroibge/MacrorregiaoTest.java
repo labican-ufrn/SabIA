@@ -2,8 +2,7 @@ package br.labican.ufrn.sabia.modelo.cadastroibge;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,6 +46,7 @@ public class MacrorregiaoTest {
 	public void pesquisar() {
 		List<Macrorregiao> macros = macrorregiaoController
 				.findMacrorregiaoEntities();
+		Assert.assertNotNull(macros);
 	}
 
 	@Test
