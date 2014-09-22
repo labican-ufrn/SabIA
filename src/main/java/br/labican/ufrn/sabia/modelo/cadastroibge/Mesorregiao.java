@@ -1,7 +1,6 @@
 package br.labican.ufrn.sabia.modelo.cadastroibge;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
 
 import java.util.List;
