@@ -179,7 +179,7 @@ CREATE TABLE pessoa(
     nacionalidade                   INTEGER     NOT NULL,
     cod_endereco                    INTEGER     NOT NULL,
     cod_rg                          INTEGER,
-    cod_usuario                     INTEGER,
+    cod_usuario                     INTEGER     NOT NULL,
 
     PRIMARY KEY(id_pessoa),
     FOREIGN KEY(naturalidade)                   REFERENCES cidade(id_cidade),
