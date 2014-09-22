@@ -7,99 +7,99 @@ import java.util.List;
 
 /**
  * The persistent class for the mesorregiao database table.
- * 
+ *
  */
 @Entity
 @NamedQuery(name="Mesorregiao.findAll", query="SELECT m FROM Mesorregiao m")
 public class Mesorregiao implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_mesorregiao")
-	private Integer idMesorregiao;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id_mesorregiao")
+    private Integer idMesorregiao;
 
-	@Column(name="cod_ibge_mesorregiao")
-	private Integer codIbgeMesorregiao;
+    @Column(name="cod_ibge_mesorregiao")
+    private Integer codIbgeMesorregiao;
 
-	@Column(name="nome_mesorregiao")
-	private String nomeMesorregiao;
+    @Column(name="nome_mesorregiao")
+    private String nomeMesorregiao;
 
-	@Column(name="sigla_mesorregiao")
-	private String siglaMesorregiao;
+    @Column(name="sigla_mesorregiao")
+    private String siglaMesorregiao;
 
-	//bi-directional many-to-one association to Estado
-	@ManyToOne
-	@JoinColumn(name="cod_estado")
-	private Estado estado;
+    //bi-directional many-to-one association to Estado
+    @ManyToOne
+    @JoinColumn(name="cod_estado")
+    private Estado estado;
 
-	//bi-directional many-to-one association to Microrregiao
-	@OneToMany(mappedBy="mesorregiao")
-	private List<Microrregiao> microrregiaos;
+    //bi-directional many-to-one association to Microrregiao
+    @OneToMany(mappedBy="mesorregiao")
+    private List<Microrregiao> microrregiaos;
 
-	public Mesorregiao() {
-	}
+    public Mesorregiao() {
+    }
 
-	public Integer getIdMesorregiao() {
-		return this.idMesorregiao;
-	}
+    public Integer getIdMesorregiao() {
+        return this.idMesorregiao;
+    }
 
-	public void setIdMesorregiao(Integer idMesorregiao) {
-		this.idMesorregiao = idMesorregiao;
-	}
+    public void setIdMesorregiao(Integer idMesorregiao) {
+        this.idMesorregiao = idMesorregiao;
+    }
 
-	public Integer getCodIbgeMesorregiao() {
-		return this.codIbgeMesorregiao;
-	}
+    public Integer getCodIbgeMesorregiao() {
+        return this.codIbgeMesorregiao;
+    }
 
-	public void setCodIbgeMesorregiao(Integer codIbgeMesorregiao) {
-		this.codIbgeMesorregiao = codIbgeMesorregiao;
-	}
+    public void setCodIbgeMesorregiao(Integer codIbgeMesorregiao) {
+        this.codIbgeMesorregiao = codIbgeMesorregiao;
+    }
 
-	public String getNomeMesorregiao() {
-		return this.nomeMesorregiao;
-	}
+    public String getNomeMesorregiao() {
+        return this.nomeMesorregiao;
+    }
 
-	public void setNomeMesorregiao(String nomeMesorregiao) {
-		this.nomeMesorregiao = nomeMesorregiao;
-	}
+    public void setNomeMesorregiao(String nomeMesorregiao) {
+        this.nomeMesorregiao = nomeMesorregiao;
+    }
 
-	public String getSiglaMesorregiao() {
-		return this.siglaMesorregiao;
-	}
+    public String getSiglaMesorregiao() {
+        return this.siglaMesorregiao;
+    }
 
-	public void setSiglaMesorregiao(String siglaMesorregiao) {
-		this.siglaMesorregiao = siglaMesorregiao;
-	}
+    public void setSiglaMesorregiao(String siglaMesorregiao) {
+        this.siglaMesorregiao = siglaMesorregiao;
+    }
 
-	public Estado getEstado() {
-		return this.estado;
-	}
+    public Estado getEstado() {
+        return this.estado;
+    }
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
-	public List<Microrregiao> getMicrorregiaos() {
-		return this.microrregiaos;
-	}
+    public List<Microrregiao> getMicrorregiaos() {
+        return this.microrregiaos;
+    }
 
-	public void setMicrorregiaos(List<Microrregiao> microrregiaos) {
-		this.microrregiaos = microrregiaos;
-	}
+    public void setMicrorregiaos(List<Microrregiao> microrregiaos) {
+        this.microrregiaos = microrregiaos;
+    }
 
-	public Microrregiao addMicrorregiao(Microrregiao microrregiao) {
-		getMicrorregiaos().add(microrregiao);
-		microrregiao.setMesorregiao(this);
+    public Microrregiao addMicrorregiao(Microrregiao microrregiao) {
+        getMicrorregiaos().add(microrregiao);
+        microrregiao.setMesorregiao(this);
 
-		return microrregiao;
-	}
+        return microrregiao;
+    }
 
-	public Microrregiao removeMicrorregiao(Microrregiao microrregiao) {
-		getMicrorregiaos().remove(microrregiao);
-		microrregiao.setMesorregiao(null);
+    public Microrregiao removeMicrorregiao(Microrregiao microrregiao) {
+        getMicrorregiaos().remove(microrregiao);
+        microrregiao.setMesorregiao(null);
 
-		return microrregiao;
-	}
+        return microrregiao;
+    }
 
 }
