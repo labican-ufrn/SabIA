@@ -36,6 +36,7 @@ DROP TABLE IF EXISTS equipe CASCADE;
 DROP TABLE IF EXISTS integrante CASCADE;
 DROP TABLE IF EXISTS confirmacao_avaliador CASCADE;
 DROP TABLE IF EXISTS viagem CASCADE;
+DROP TABLE IF EXISTS atividade CASCADE;
 
 --Criando as tabelas do banco
 
