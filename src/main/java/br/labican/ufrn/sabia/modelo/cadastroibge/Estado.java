@@ -14,12 +14,12 @@ import java.util.List;
 @Entity
 @NamedQuery(name="Estado.findAll", query="SELECT e FROM Estado e")
 public class Estado implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_estado")
-	private Integer idEstado;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id_estado")
+    private Integer idEstado;
 
 	@Column(name="cod_ibge_estado")
 	private Integer codIbgeEstado;
