@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="SABIA_PU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>br.labican.ufrn.sabia.modelo.Autorizacao</class>
-    <class>br.labican.ufrn.sabia.modelo.Usuario</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Cidade</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Estado</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Macrorregiao</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Mesorregiao</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Microrregiao</class>
-    <class>br.labican.ufrn.sabia.modelo.cadastroibge.Pais</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sabiabd"/>
-      <property name="javax.persistence.jdbc.password" value="!{5@B1@.L@B1C@N}"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.user" value="usuario_sabia"/>
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
-    </properties>
-  </persistence-unit>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="SABIA_PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Cidade</class>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Estado</class>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Macrorregiao</class>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Mesorregiao</class>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Microrregiao</class>
+		<class>br.labican.ufrn.sabia.modelo.cadastroibge.Pais</class>
+		<class>br.labican.ufrn.sabia.modelo.controledepermissao.Perfil</class>
+		<class>br.labican.ufrn.sabia.modelo.controledepermissao.Permissao</class>
+		<class>br.labican.ufrn.sabia.modelo.controledepermissao.Usuario</class>
+		<class>br.labican.ufrn.sabia.modelo.dadospessoais.ContatoPessoa</class>
+		<class>br.labican.ufrn.sabia.modelo.dadospessoais.Pessoa</class>
+		<class>br.labican.ufrn.sabia.modelo.dadospessoais.Rg</class>
+		<class>br.labican.ufrn.sabia.modelo.dadospessoais.TipoContato</class>
+		<class>br.labican.ufrn.sabia.modelo.Atividade</class>
+		<class>br.labican.ufrn.sabia.modelo.Avaliacao</class>
+		<class>br.labican.ufrn.sabia.modelo.Avaliador</class>
+		<class>br.labican.ufrn.sabia.modelo.Cargo</class>
+		<class>br.labican.ufrn.sabia.modelo.ConfirmacaoAvaliador</class>
+		<class>br.labican.ufrn.sabia.modelo.ContatoInstituicao</class>
+		<class>br.labican.ufrn.sabia.modelo.Disponibilidade</class>
+		<class>br.labican.ufrn.sabia.modelo.EixoTecnologico</class>
+		<class>br.labican.ufrn.sabia.modelo.Endereco</class>
+		<class>br.labican.ufrn.sabia.modelo.Equipe</class>
+		<class>br.labican.ufrn.sabia.modelo.Instituicao</class>
+		<class>br.labican.ufrn.sabia.modelo.Projeto</class>
+		<class>br.labican.ufrn.sabia.modelo.SemanaAvaliacao</class>
+		<class>br.labican.ufrn.sabia.modelo.SistemaEnsino</class>
+		<class>br.labican.ufrn.sabia.modelo.StatusAvaliador</class>
+		<class>br.labican.ufrn.sabia.modelo.TipoInstituicao</class>
+		<class>br.labican.ufrn.sabia.modelo.TipoStatusAvaliador</class>
+		<class>br.labican.ufrn.sabia.modelo.Titulacao</class>
+		<class>br.labican.ufrn.sabia.modelo.Viagem</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sabiabd" />
+			<property name="javax.persistence.jdbc.password" value="!{5@B1@.L@B1C@N}" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.user" value="usuario_sabia" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
 </persistence>

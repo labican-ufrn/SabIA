@@ -14,14 +14,14 @@
         <s:intercept-url pattern="/sistema/**" access="hasRole('ROLE_ADMIN')"/>
     </s:http>
     
-    <s:authentication-manager>
-        <s:authentication-provider>
-            <s:jdbc-user-service 
-                data-source-ref="dataSource"
-                users-by-username-query="select username, password, ativo from usuario where username = ? and ativo = true"
-                authorities-by-username-query="select a.id, a.perfil from usuario u, usuario_autorizacao ua, autorizacao a where u.id = ua.usuarios_id and a.id = ua.autorizacoes_id and u.username = ?"/>
-        </s:authentication-provider>
-    </s:authentication-manager>
+<!--     <s:authentication-manager> -->
+<!--         <s:authentication-provider> -->
+<!--             <s:jdbc-user-service  -->
+<!--                 data-source-ref="dataSource" -->
+<!--                 users-by-username-query="select username, password, ativo from usuario where username = ? and ativo = true" -->
+<!--                 authorities-by-username-query="select a.id, a.perfil from usuario u, usuario_autorizacao ua, autorizacao a where u.id = ua.usuarios_id and a.id = ua.autorizacoes_id and u.username = ?"/> -->
+<!--         </s:authentication-provider> -->
+<!--     </s:authentication-manager> -->
     
     <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <b:property name="url" value="jdbc:postgresql://localhost:5432/sabiabd" />

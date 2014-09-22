@@ -5,13 +5,6 @@ package br.labican.ufrn.sabia.negocio;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-
-import br.labican.ufrn.sabia.modelo.Usuario;
-
 /**
  *
  * @author Rummenigge Maia
@@ -20,21 +13,21 @@ import br.labican.ufrn.sabia.modelo.Usuario;
  @SessionScoped
 public class LoginMB {
     
-    private Usuario usuario;
+//    private UsuarioSpring usuario;
 
     public LoginMB() {
-        usuario = new Usuario();
-        SecurityContext sc = SecurityContextHolder.getContext();
-        Authentication aut = sc.getAuthentication();
-        User user = (User) aut.getPrincipal();
-        usuario.setUsername(user.getUsername());
+//        usuario = new UsuarioSpring();
+//        SecurityContext sc = SecurityContextHolder.getContext();
+//        Authentication aut = sc.getAuthentication();
+//        User user = (User) aut.getPrincipal();
+//        usuario.setUsername(user.getUsername());
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+//    public UsuarioSpring getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(UsuarioSpring usuario) {
+//        this.usuario = usuario;
+//    }
 }
