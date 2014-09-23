@@ -6,7 +6,7 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.labican.ufrn.sabia.dao.MacrorregiaoJpaController;
+import br.labican.ufrn.sabia.dao.cadastroibge.MacrorregiaoJpaController;
 import br.labican.ufrn.sabia.dao.exceptions.NonexistentEntityException;
 import br.labican.ufrn.sabia.util.Util;
 

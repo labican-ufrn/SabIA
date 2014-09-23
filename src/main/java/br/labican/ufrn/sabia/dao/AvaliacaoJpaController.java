@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.labican.ufrn.sabia.dao;
 
 import br.labican.ufrn.sabia.dao.exceptions.NonexistentEntityException;
+import br.labican.ufrn.sabia.modelo.Avaliacao;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Mesorregiao;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Cidade;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Microrregiao;
+import br.labican.ufrn.sabia.modelo.Equipe;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,23 +22,27 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author Rummenigge
  */
-public class MicrorregiaoJpaController implements Serializable {
+public class AvaliacaoJpaController implements Serializable {
 
-    public MicrorregiaoJpaController(EntityManagerFactory emf) {
+    public AvaliacaoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void create(Microrregiao microrregiao) {
+    public void create(Avaliacao avaliacao) {
+        if (avaliacao.getEquipes() == null) {
+            avaliacao.setEquipes(new ArrayList<Equipe>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(microrregiao);
+            em.persist(avaliacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -49,19 +51,22 @@ public class MicrorregiaoJpaController implements Serializable {
         }
     }
 
-    public void edit(Microrregiao microrregiao) throws NonexistentEntityException, Exception {
+    public void edit(Avaliacao avaliacao) throws NonexistentEntityException,
+            Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(microrregiao);
+            em.merge(avaliacao);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = microrregiao.getIdMicrorregiao();
-                if (findMicrorregiao(id) == null) {
-                    throw new NonexistentEntityException("The microrregiao with id " + id + " no longer exists.");
+                Integer id = avaliacao.getIdAvaliacao();
+                if (findAvaliacao(id) == null) {
+                    throw new NonexistentEntityException(
+                            "The avaliacao with id " + id
+                                    + " no longer exists.");
                 }
             }
             throw ex;
@@ -77,14 +82,15 @@ public class MicrorregiaoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Microrregiao microrregiao;
+            Avaliacao avaliacao;
             try {
-                microrregiao = em.getReference(Microrregiao.class, id);
-                microrregiao.getIdMicrorregiao();
+                avaliacao = em.getReference(Avaliacao.class, id);
+                avaliacao.getIdAvaliacao();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The microrregiao with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The avaliacao with id "
+                        + id + " no longer exists.", enfe);
             }
-            em.remove(microrregiao);
+            em.remove(avaliacao);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -93,19 +99,20 @@ public class MicrorregiaoJpaController implements Serializable {
         }
     }
 
-    public List<Microrregiao> findMicrorregiaoEntities() {
-        return findMicrorregiaoEntities(true, -1, -1);
+    public List<Avaliacao> findAvaliacaoEntities() {
+        return findAvaliacaoEntities(true, -1, -1);
     }
 
-    public List<Microrregiao> findMicrorregiaoEntities(int maxResults, int firstResult) {
-        return findMicrorregiaoEntities(false, maxResults, firstResult);
+    public List<Avaliacao> findAvaliacaoEntities(int maxResults, int firstResult) {
+        return findAvaliacaoEntities(false, maxResults, firstResult);
     }
 
-    private List<Microrregiao> findMicrorregiaoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Avaliacao> findAvaliacaoEntities(boolean all, int maxResults,
+            int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Microrregiao.class));
+            cq.select(cq.from(Avaliacao.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -117,20 +124,20 @@ public class MicrorregiaoJpaController implements Serializable {
         }
     }
 
-    public Microrregiao findMicrorregiao(Integer id) {
+    public Avaliacao findAvaliacao(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Microrregiao.class, id);
+            return em.find(Avaliacao.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getMicrorregiaoCount() {
+    public int getAvaliacaoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Microrregiao> rt = cq.from(Microrregiao.class);
+            Root<Avaliacao> rt = cq.from(Avaliacao.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -138,5 +145,5 @@ public class MicrorregiaoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

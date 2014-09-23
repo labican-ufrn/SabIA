@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package br.labican.ufrn.sabia.dao;
+package br.labican.ufrn.sabia.dao.controlepermissao;
 
 import br.labican.ufrn.sabia.dao.exceptions.NonexistentEntityException;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Estado;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Macrorregiao;
-import br.labican.ufrn.sabia.modelo.cadastroibge.Mesorregiao;
+import br.labican.ufrn.sabia.modelo.controledepermissao.Perfil;
+import br.labican.ufrn.sabia.modelo.controledepermissao.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,9 +22,9 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author Rummenigge
  */
-public class EstadoJpaController implements Serializable {
+public class UsuarioJpaController implements Serializable {
 
-    public EstadoJpaController(EntityManagerFactory emf) {
+    public UsuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -35,12 +33,15 @@ public class EstadoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Estado estado) {
+    public void create(Usuario usuario) {
+        if (usuario.getPerfils() == null) {
+            usuario.setPerfils(new ArrayList<Perfil>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(estado);
+            em.persist(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -49,19 +50,19 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public void edit(Estado estado) throws NonexistentEntityException, Exception {
+    public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.merge(estado);
+            em.merge(usuario);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = estado.getIdEstado();
-                if (findEstado(id) == null) {
-                    throw new NonexistentEntityException("The estado with id " + id + " no longer exists.");
+                Integer id = usuario.getIdUsuario();
+                if (findUsuario(id) == null) {
+                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -77,14 +78,14 @@ public class EstadoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Estado estado;
+            Usuario usuario;
             try {
-                estado = em.getReference(Estado.class, id);
-                estado.getIdEstado();
+                usuario = em.getReference(Usuario.class, id);
+                usuario.getIdUsuario();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The estado with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
-            em.remove(estado);
+            em.remove(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -93,19 +94,19 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public List<Estado> findEstadoEntities() {
-        return findEstadoEntities(true, -1, -1);
+    public List<Usuario> findUsuarioEntities() {
+        return findUsuarioEntities(true, -1, -1);
     }
 
-    public List<Estado> findEstadoEntities(int maxResults, int firstResult) {
-        return findEstadoEntities(false, maxResults, firstResult);
+    public List<Usuario> findUsuarioEntities(int maxResults, int firstResult) {
+        return findUsuarioEntities(false, maxResults, firstResult);
     }
 
-    private List<Estado> findEstadoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Usuario> findUsuarioEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Estado.class));
+            cq.select(cq.from(Usuario.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -117,20 +118,20 @@ public class EstadoJpaController implements Serializable {
         }
     }
 
-    public Estado findEstado(Integer id) {
+    public Usuario findUsuario(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Estado.class, id);
+            return em.find(Usuario.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEstadoCount() {
+    public int getUsuarioCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Estado> rt = cq.from(Estado.class);
+            Root<Usuario> rt = cq.from(Usuario.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -138,5 +139,5 @@ public class EstadoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

@@ -7,8 +7,8 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.labican.ufrn.sabia.dao.CidadeJpaController;
-import br.labican.ufrn.sabia.dao.MicrorregiaoJpaController;
+import br.labican.ufrn.sabia.dao.cadastroibge.CidadeJpaController;
+import br.labican.ufrn.sabia.dao.cadastroibge.MicrorregiaoJpaController;
 import br.labican.ufrn.sabia.dao.exceptions.NonexistentEntityException;
 import br.labican.ufrn.sabia.util.Util;
 

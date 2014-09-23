@@ -6,65 +6,64 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.labican.ufrn.sabia.dao.PaisJpaController;
+import br.labican.ufrn.sabia.dao.cadastroibge.PaisJpaController;
 import br.labican.ufrn.sabia.dao.exceptions.NonexistentEntityException;
 import br.labican.ufrn.sabia.util.Util;
 
 public class PaisTest {
 
-	Pais pais;
-	Pais pais2;
-	PaisJpaController paisController;
-	Random gerador = new Random();
-	List<Pais> paises;
-	
-	@Before
-    public void iniciar() throws Exception {
-		paisController = new PaisJpaController(Util.EMF);
-			
-		pais = new Pais();
-		pais.setCodIbgePais(gerador.nextInt(10000));
-		pais.setNomePais(String.valueOf(gerador.nextInt(10000)));
-		pais.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
-		
-		pais2 = new Pais();
-		pais2.setCodIbgePais(gerador.nextInt(10000));
-		pais2.setNomePais(String.valueOf(gerador.nextInt(10000)));
-		pais2.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
-	}	
+    Pais pais;
+    Pais pais2;
+    PaisJpaController paisController;
+    Random gerador = new Random();
+    List<Pais> paises;
 
-	
-	@Test
-    public void testInserir() {
-		paisController.create(pais);
-		paisController.create(pais2);
+    @Before
+    public void iniciar() throws Exception {
+        paisController = new PaisJpaController(Util.EMF);
+
+        pais = new Pais();
+        pais.setCodIbgePais(gerador.nextInt(10000));
+        pais.setNomePais(String.valueOf(gerador.nextInt(10000)));
+        pais.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
+
+        pais2 = new Pais();
+        pais2.setCodIbgePais(gerador.nextInt(10000));
+        pais2.setNomePais(String.valueOf(gerador.nextInt(10000)));
+        pais2.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
     }
 
-	@Test
-	public void testEditar() throws NonexistentEntityException, Exception {
-		paises = paisController.findPaisEntities();
+    @Test
+    public void testInserir() {
+        paisController.create(pais);
+        paisController.create(pais2);
+    }
 
-		if (!paises.isEmpty()) {
-			pais = paises.get(0);
-		}
+    @Test
+    public void testEditar() throws NonexistentEntityException, Exception {
+        paises = paisController.findPaisEntities();
 
-		pais.setNomePais(String.valueOf(gerador.nextInt(10000)));
-		paisController.edit(pais);
-	}
+        if (!paises.isEmpty()) {
+            pais = paises.get(0);
+        }
 
-	@Test
-	public void pesquisar() {
-		paises = paisController.findPaisEntities();
-	}
+        pais.setNomePais(String.valueOf(gerador.nextInt(10000)));
+        paisController.edit(pais);
+    }
 
-	@Test
-	public void excluir() throws NonexistentEntityException {
-		paises = paisController.findPaisEntities();
+    @Test
+    public void pesquisar() {
+        paises = paisController.findPaisEntities();
+    }
 
-		if (!paises.isEmpty()) {
-			pais = paises.get(0);
-			paisController.destroy(pais.getIdPais());
-		}
+    @Test
+    public void excluir() throws NonexistentEntityException {
+        paises = paisController.findPaisEntities();
 
-	}
+        if (!paises.isEmpty()) {
+            pais = paises.get(0);
+            paisController.destroy(pais.getIdPais());
+        }
+
+    }
 }
