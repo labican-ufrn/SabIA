@@ -138,34 +138,6 @@ CREATE TABLE perfil(
     PRIMARY KEY(id_perfil)
 );
 
-CREATE TABLE perfil_permissao(
-    cod_perfil                      INTEGER     NOT NULL,
-    cod_permissao                   INTEGER     NOT NULL,
-
-    CONSTRAINT id_perfil_permissao              PRIMARY KEY(cod_perfil, cod_permissao),
-    FOREIGN KEY(cod_perfil)                     REFERENCES perfil(id_perfil),
-    FOREIGN KEY(cod_permissao)                  REFERENCES permissao(id_permissao)  
-);
-
-CREATE TABLE usuario(
-    id_usuario                      SERIAL      NOT NULL,
-    login                           TEXT        NOT NULL UNIQUE,
-    senha                           TEXT        NOT NULL,
-    status                          TEXT        NOT NULL,
-    cod_pessoa                      INTEGER,
-
-    PRIMARY KEY(id_usuario)
-);
-
-CREATE TABLE usuario_perfil(
-    cod_usuario                     INTEGER     NOT NULL,
-    cod_perfil                      INTEGER     NOT NULL,
-
-    CONSTRAINT id_usuario_perfil                PRIMARY KEY(cod_usuario, cod_perfil),
-    FOREIGN KEY(cod_usuario)                    REFERENCES usuario(id_usuario),
-    FOREIGN KEY(cod_perfil)                     REFERENCES perfil(id_perfil)
-);
-
 CREATE TABLE pessoa(
     id_pessoa                       SERIAL      NOT NULL,
     nome_primeiro_pessoa            TEXT        NOT NULL,
@@ -180,13 +152,41 @@ CREATE TABLE pessoa(
     nacionalidade                   INTEGER     NOT NULL,
     cod_endereco                    INTEGER     NOT NULL,
     cod_rg                          INTEGER,
-    cod_usuario                     INTEGER     NOT NULL,
+    cod_usuario                     INTEGER,
 
     PRIMARY KEY(id_pessoa),
     FOREIGN KEY(naturalidade)                   REFERENCES cidade(id_cidade),
     FOREIGN KEY(nacionalidade)                  REFERENCES estado(id_estado),
-    FOREIGN KEY(cod_rg)                         REFERENCES rg(id_rg),
-    FOREIGN KEY(cod_usuario)                    REFERENCES usuario(id_usuario)
+    FOREIGN KEY(cod_rg)                         REFERENCES rg(id_rg)
+);
+
+CREATE TABLE perfil_permissao(
+    cod_perfil                      INTEGER     NOT NULL,
+    cod_permissao                   INTEGER     NOT NULL,
+
+    CONSTRAINT id_perfil_permissao              PRIMARY KEY(cod_perfil, cod_permissao),
+    FOREIGN KEY(cod_perfil)                     REFERENCES perfil(id_perfil),
+    FOREIGN KEY(cod_permissao)                  REFERENCES permissao(id_permissao)  
+);
+
+CREATE TABLE usuario(
+    id_usuario                      SERIAL      NOT NULL,
+    login                           TEXT        NOT NULL UNIQUE,
+    senha                           TEXT        NOT NULL,
+    status                          TEXT        NOT NULL,
+    cod_pessoa                      INTEGER 	NOT NULL,
+
+    PRIMARY KEY(id_usuario),
+    FOREIGN KEY(cod_pessoa)                     REFERENCES pessoa(id_pessoa)
+);
+
+CREATE TABLE usuario_perfil(
+    cod_usuario                     INTEGER     NOT NULL,
+    cod_perfil                      INTEGER     NOT NULL,
+
+    CONSTRAINT id_usuario_perfil                PRIMARY KEY(cod_usuario, cod_perfil),
+    FOREIGN KEY(cod_usuario)                    REFERENCES usuario(id_usuario),
+    FOREIGN KEY(cod_perfil)                     REFERENCES perfil(id_perfil)
 );
 
 CREATE TABLE tipo_contato(
@@ -207,10 +207,6 @@ CREATE TABLE contato_pessoa(
     FOREIGN KEY(cod_tipo_contato)               REFERENCES tipo_contato(id_tipo_contato),
     FOREIGN KEY(cod_pessoa)                     REFERENCES pessoa(id_pessoa)
 );
-
---Adicionando pessoa a usuario
-ALTER TABLE usuario
-ADD FOREIGN KEY(cod_pessoa)                     REFERENCES pessoa(id_pessoa);
 
 --Tabelas com os dados das instituições
 CREATE TABLE sistema_ensino(
@@ -373,10 +369,6 @@ CREATE TABLE integrante(
     FOREIGN KEY(cod_equipe)                     REFERENCES equipe(id_equipe)
 );
 
---Adicionando equipe a avalicao
-ALTER TABLE avaliacao
-ADD FOREIGN KEY(cod_equipe)                     REFERENCES equipe(id_equipe);
-
 --Tabelas com os dados de confirmação e viajem
 CREATE TABLE confirmacao_avaliador(
     id_confirmacao_avaliador        SERIAL      NOT NULL,
@@ -408,3 +400,12 @@ CREATE TABLE atividade(
     PRIMARY KEY(id_atividade),
     FOREIGN KEY(cod_viagem)                         REFERENCES viagem(id_viagem)
 );
+
+--Adicionando pessoa a usuario
+ALTER TABLE pessoa
+ADD FOREIGN KEY(cod_usuario)                    REFERENCES usuario(id_usuario);
+
+
+--Adicionando equipe a avalicao
+ALTER TABLE avaliacao
+ADD FOREIGN KEY(cod_equipe)                     REFERENCES equipe(id_equipe);
