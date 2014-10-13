@@ -110,7 +110,7 @@ CREATE TABLE endereco(
     ponto_referencia                TEXT,
     tipo_endereco                   TEXT,
 
-    PRIMARY KEY(id_endereco)                
+    PRIMARY KEY(id_endereco)
 );
 
 CREATE TABLE rg(
@@ -156,7 +156,7 @@ CREATE TABLE pessoa(
 
     PRIMARY KEY(id_pessoa),
     FOREIGN KEY(naturalidade)                   REFERENCES cidade(id_cidade),
-    FOREIGN KEY(nacionalidade)                  REFERENCES estado(id_estado),
+    FOREIGN KEY(nacionalidade)                  REFERENCES pais(id_pais),
     FOREIGN KEY(cod_rg)                         REFERENCES rg(id_rg)
 );
 
@@ -166,7 +166,7 @@ CREATE TABLE perfil_permissao(
 
     CONSTRAINT id_perfil_permissao              PRIMARY KEY(cod_perfil, cod_permissao),
     FOREIGN KEY(cod_perfil)                     REFERENCES perfil(id_perfil),
-    FOREIGN KEY(cod_permissao)                  REFERENCES permissao(id_permissao)  
+    FOREIGN KEY(cod_permissao)                  REFERENCES permissao(id_permissao)
 );
 
 CREATE TABLE usuario(
@@ -192,7 +192,7 @@ CREATE TABLE usuario_perfil(
 CREATE TABLE tipo_contato(
     id_tipo_contato                 SERIAL      NOT NULL,
     nome_tipo_contato               TEXT        NOT NULL,
-    expressao_regular               TEXT        NOT NULL,   
+    expressao_regular               TEXT        NOT NULL,
 
     PRIMARY KEY(id_tipo_contato)
 );
