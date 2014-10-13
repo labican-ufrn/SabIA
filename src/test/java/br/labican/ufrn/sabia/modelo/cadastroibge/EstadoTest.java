@@ -37,13 +37,13 @@ public class EstadoTest {
         estado.setCodIbgeEstado(gerador.nextInt(10000));
         estado.setMacrorregiao(macrorregiao);
         estado.setNomeEstado(String.valueOf(gerador.nextInt(10000)));
-        estado.setSiglaEstado(String.valueOf(gerador.nextInt(10000)));
+        estado.setSiglaEstado(String.valueOf(gerador.nextInt(99)));
 
         estado2 = new Estado();
         estado2.setCodIbgeEstado(gerador.nextInt(10000));
         estado2.setMacrorregiao(macrorregiao);
         estado2.setNomeEstado(String.valueOf(gerador.nextInt(10000)));
-        estado2.setSiglaEstado(String.valueOf(gerador.nextInt(10000)));
+        estado2.setSiglaEstado(String.valueOf(gerador.nextInt(99)));
 
     }
 

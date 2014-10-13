@@ -22,13 +22,11 @@ public class MacrorregiaoTest {
         macrorregiaoController = new MacrorregiaoJpaController(Util.EMF);
         macrorregiao = new Macrorregiao();
         macrorregiao.setCodIbgeMacrorregiao(gerador.nextInt(10000));
-        macrorregiao
-                .setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
+        macrorregiao.setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
 
         macrorregiao2 = new Macrorregiao();
         macrorregiao2.setCodIbgeMacrorregiao(gerador.nextInt(10000));
-        macrorregiao2
-                .setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
+        macrorregiao2.setNomeMacrorregiao(String.valueOf(gerador.nextInt(10000)));
     }
 
     @Test

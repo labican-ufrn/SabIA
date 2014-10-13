@@ -25,12 +25,12 @@ public class PaisTest {
         pais = new Pais();
         pais.setCodIbgePais(gerador.nextInt(10000));
         pais.setNomePais(String.valueOf(gerador.nextInt(10000)));
-        pais.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
+        pais.setSiglaPais(String.valueOf(gerador.nextInt(99)));
 
         pais2 = new Pais();
         pais2.setCodIbgePais(gerador.nextInt(10000));
         pais2.setNomePais(String.valueOf(gerador.nextInt(10000)));
-        pais2.setSiglaPais(String.valueOf(gerador.nextInt(10000)));
+        pais2.setSiglaPais(String.valueOf(gerador.nextInt(99)));
     }
 
     @Test

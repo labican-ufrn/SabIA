@@ -28,24 +28,19 @@ public class MicrorregiaoTest {
         mesorregiaoController = new MesorregiaoJpaController(Util.EMF);
 
         mesos = mesorregiaoController.findMesorregiaoEntities();
-
         if (!mesos.isEmpty()) {
             mesorregiao = mesos.get(0);
         }
 
         microrregiao = new Microrregiao();
-
         microrregiao.setCodIbgeMicrorregiao(gerador.nextInt(10000));
         microrregiao.setMesorregiao(mesorregiao);
-        microrregiao
-                .setNomeMicrorregiao(String.valueOf(gerador.nextInt(10000)));
+        microrregiao.setNomeMicrorregiao(String.valueOf(gerador.nextInt(10000)));
 
         microrregiao2 = new Microrregiao();
-
         microrregiao2.setCodIbgeMicrorregiao(gerador.nextInt(10000));
         microrregiao2.setMesorregiao(mesorregiao);
-        microrregiao2
-                .setNomeMicrorregiao(String.valueOf(gerador.nextInt(10000)));
+        microrregiao2.setNomeMicrorregiao(String.valueOf(gerador.nextInt(10000)));
     }
 
     @Test

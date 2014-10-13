@@ -14,70 +14,70 @@ import br.labican.ufrn.sabia.util.Util;
 
 public class CidadeTest {
 
-	Cidade cidade;
-	Cidade cidade2;
-	Microrregiao microrregiao;
-	CidadeJpaController cidadeController;
-	MicrorregiaoJpaController microrregiaoController;
+    Cidade cidade;
+    Cidade cidade2;
+    Microrregiao microrregiao;
+    CidadeJpaController cidadeController;
+    MicrorregiaoJpaController microrregiaoController;
     List<Cidade> cidades;
     List<Microrregiao> micros;
     Random gerador = new Random();
-	
-	@Before
+
+    @Before
     public void iniciar() throws Exception {
-		cidadeController = new CidadeJpaController(Util.EMF);
-		microrregiaoController = new MicrorregiaoJpaController(Util.EMF);	
-		
-		micros = microrregiaoController.findMicrorregiaoEntities();
+        cidadeController = new CidadeJpaController(Util.EMF);
+        microrregiaoController = new MicrorregiaoJpaController(Util.EMF);
 
-		if (!micros.isEmpty()) {
-			microrregiao = micros.get(0);
-		}
-		
-		cidade = new Cidade();
-		cidade.setCodIbgeCidade(gerador.nextInt(10000));
-		cidade.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
-		cidade.setMicrorregiao(microrregiao);
-		
-		cidade2 = new Cidade();
-		cidade2.setCodIbgeCidade(gerador.nextInt(10000));
-		cidade2.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
-		cidade2.setMicrorregiao(microrregiao);
-	}	
+        micros = microrregiaoController.findMicrorregiaoEntities();
 
-	
-	@Test
-    public void testInserir() {
-		cidadeController.create(cidade);
-		cidadeController.create(cidade2);
+        if (!micros.isEmpty()) {
+            microrregiao = micros.get(0);
+        }
+
+        cidade = new Cidade();
+        cidade.setCodIbgeCidade(gerador.nextInt(10000));
+        cidade.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
+        cidade.setMicrorregiao(microrregiao);
+
+        cidade2 = new Cidade();
+        cidade2.setCodIbgeCidade(gerador.nextInt(10000));
+        cidade2.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
+        cidade2.setMicrorregiao(microrregiao);
     }
 
-	@Test
-	public void testEditar() throws NonexistentEntityException, Exception {
-		cidades = cidadeController.findCidadeEntities();
 
-		if (!cidades.isEmpty()) {
-			cidade = cidades.get(0);
-		}
+    @Test
+    public void testInserir() {
+        cidadeController.create(cidade);
+        cidadeController.create(cidade2);
+    }
 
-		cidade.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
-		cidadeController.edit(cidade);
-	}
+    @Test
+    public void testEditar() throws NonexistentEntityException, Exception {
+        cidades = cidadeController.findCidadeEntities();
 
-	@Test
-	public void pesquisar() {
-		cidades = cidadeController.findCidadeEntities();
-	}
+        if (!cidades.isEmpty()) {
+            cidade = cidades.get(0);
+        }
 
-	@Test
-	public void excluir() throws NonexistentEntityException {
-		cidades = cidadeController.findCidadeEntities();
+        cidade.setNomeCidade(String.valueOf(gerador.nextInt(10000)));
+        cidadeController.edit(cidade);
+    }
 
-		if (!cidades.isEmpty()) {
-			cidade = cidades.get(0);
-			cidadeController.destroy(cidade.getIdCidade());
-		}
+    @Test
+    public void pesquisar() {
+        cidades = cidadeController.findCidadeEntities();
+    }
 
-		
-	}
+    @Test
+    public void excluir() throws NonexistentEntityException {
+        cidades = cidadeController.findCidadeEntities();
+
+        if (!cidades.isEmpty()) {
+            cidade = cidades.get(0);
+            cidadeController.destroy(cidade.getIdCidade());
+        }
+
+
+    }
 }

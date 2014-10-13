@@ -28,6 +28,7 @@ public class RgJpaController implements Serializable {
     public RgJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -44,7 +45,9 @@ public class RgJpaController implements Serializable {
             em.getTransaction().begin();
             List<Pessoa> attachedPessoas = new ArrayList<Pessoa>();
             for (Pessoa pessoasPessoaToAttach : rg.getPessoas()) {
-                pessoasPessoaToAttach = em.getReference(pessoasPessoaToAttach.getClass(), pessoasPessoaToAttach.getIdPessoa());
+                pessoasPessoaToAttach = em.getReference(
+                        pessoasPessoaToAttach.getClass(),
+                        pessoasPessoaToAttach.getIdPessoa());
                 attachedPessoas.add(pessoasPessoaToAttach);
             }
             rg.setPessoas(attachedPessoas);
@@ -71,41 +74,15 @@ public class RgJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Rg persistentRg = em.find(Rg.class, rg.getIdRg());
-            List<Pessoa> pessoasOld = persistentRg.getPessoas();
-            List<Pessoa> pessoasNew = rg.getPessoas();
-            List<Pessoa> attachedPessoasNew = new ArrayList<Pessoa>();
-            for (Pessoa pessoasNewPessoaToAttach : pessoasNew) {
-                pessoasNewPessoaToAttach = em.getReference(pessoasNewPessoaToAttach.getClass(), pessoasNewPessoaToAttach.getIdPessoa());
-                attachedPessoasNew.add(pessoasNewPessoaToAttach);
-            }
-            pessoasNew = attachedPessoasNew;
-            rg.setPessoas(pessoasNew);
             rg = em.merge(rg);
-            for (Pessoa pessoasOldPessoa : pessoasOld) {
-                if (!pessoasNew.contains(pessoasOldPessoa)) {
-                    pessoasOldPessoa.setRg(null);
-                    pessoasOldPessoa = em.merge(pessoasOldPessoa);
-                }
-            }
-            for (Pessoa pessoasNewPessoa : pessoasNew) {
-                if (!pessoasOld.contains(pessoasNewPessoa)) {
-                    Rg oldRgOfPessoasNewPessoa = pessoasNewPessoa.getRg();
-                    pessoasNewPessoa.setRg(rg);
-                    pessoasNewPessoa = em.merge(pessoasNewPessoa);
-                    if (oldRgOfPessoasNewPessoa != null && !oldRgOfPessoasNewPessoa.equals(rg)) {
-                        oldRgOfPessoasNewPessoa.getPessoas().remove(pessoasNewPessoa);
-                        oldRgOfPessoasNewPessoa = em.merge(oldRgOfPessoasNewPessoa);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Integer id = rg.getIdRg();
                 if (findRg(id) == null) {
-                    throw new NonexistentEntityException("The rg with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("The rg with id " + id
+                            + " no longer exists.");
                 }
             }
             throw ex;
@@ -126,7 +103,8 @@ public class RgJpaController implements Serializable {
                 rg = em.getReference(Rg.class, id);
                 rg.getIdRg();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The rg with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The rg with id " + id
+                        + " no longer exists.", enfe);
             }
             List<Pessoa> pessoas = rg.getPessoas();
             for (Pessoa pessoasPessoa : pessoas) {
@@ -187,5 +165,5 @@ public class RgJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

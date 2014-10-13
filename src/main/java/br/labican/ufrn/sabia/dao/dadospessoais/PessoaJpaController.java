@@ -43,31 +43,7 @@ public class PessoaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Rg rg = pessoa.getRg();
-            if (rg != null) {
-                rg = em.getReference(rg.getClass(), rg.getIdRg());
-                pessoa.setRg(rg);
-            }
-            List<ContatoPessoa> attachedContatoPessoas = new ArrayList<ContatoPessoa>();
-            for (ContatoPessoa contatoPessoasContatoPessoaToAttach : pessoa.getContatoPessoas()) {
-                contatoPessoasContatoPessoaToAttach = em.getReference(contatoPessoasContatoPessoaToAttach.getClass(), contatoPessoasContatoPessoaToAttach.getIdContatoPessoa());
-                attachedContatoPessoas.add(contatoPessoasContatoPessoaToAttach);
-            }
-            pessoa.setContatoPessoas(attachedContatoPessoas);
             em.persist(pessoa);
-            if (rg != null) {
-                rg.getPessoas().add(pessoa);
-                rg = em.merge(rg);
-            }
-            for (ContatoPessoa contatoPessoasContatoPessoa : pessoa.getContatoPessoas()) {
-                Pessoa oldPessoaOfContatoPessoasContatoPessoa = contatoPessoasContatoPessoa.getPessoa();
-                contatoPessoasContatoPessoa.setPessoa(pessoa);
-                contatoPessoasContatoPessoa = em.merge(contatoPessoasContatoPessoa);
-                if (oldPessoaOfContatoPessoasContatoPessoa != null) {
-                    oldPessoaOfContatoPessoasContatoPessoa.getContatoPessoas().remove(contatoPessoasContatoPessoa);
-                    oldPessoaOfContatoPessoasContatoPessoa = em.merge(oldPessoaOfContatoPessoasContatoPessoa);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -81,48 +57,7 @@ public class PessoaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Pessoa persistentPessoa = em.find(Pessoa.class, pessoa.getIdPessoa());
-            Rg rgOld = persistentPessoa.getRg();
-            Rg rgNew = pessoa.getRg();
-            List<ContatoPessoa> contatoPessoasOld = persistentPessoa.getContatoPessoas();
-            List<ContatoPessoa> contatoPessoasNew = pessoa.getContatoPessoas();
-            if (rgNew != null) {
-                rgNew = em.getReference(rgNew.getClass(), rgNew.getIdRg());
-                pessoa.setRg(rgNew);
-            }
-            List<ContatoPessoa> attachedContatoPessoasNew = new ArrayList<ContatoPessoa>();
-            for (ContatoPessoa contatoPessoasNewContatoPessoaToAttach : contatoPessoasNew) {
-                contatoPessoasNewContatoPessoaToAttach = em.getReference(contatoPessoasNewContatoPessoaToAttach.getClass(), contatoPessoasNewContatoPessoaToAttach.getIdContatoPessoa());
-                attachedContatoPessoasNew.add(contatoPessoasNewContatoPessoaToAttach);
-            }
-            contatoPessoasNew = attachedContatoPessoasNew;
-            pessoa.setContatoPessoas(contatoPessoasNew);
             pessoa = em.merge(pessoa);
-            if (rgOld != null && !rgOld.equals(rgNew)) {
-                rgOld.getPessoas().remove(pessoa);
-                rgOld = em.merge(rgOld);
-            }
-            if (rgNew != null && !rgNew.equals(rgOld)) {
-                rgNew.getPessoas().add(pessoa);
-                rgNew = em.merge(rgNew);
-            }
-            for (ContatoPessoa contatoPessoasOldContatoPessoa : contatoPessoasOld) {
-                if (!contatoPessoasNew.contains(contatoPessoasOldContatoPessoa)) {
-                    contatoPessoasOldContatoPessoa.setPessoa(null);
-                    contatoPessoasOldContatoPessoa = em.merge(contatoPessoasOldContatoPessoa);
-                }
-            }
-            for (ContatoPessoa contatoPessoasNewContatoPessoa : contatoPessoasNew) {
-                if (!contatoPessoasOld.contains(contatoPessoasNewContatoPessoa)) {
-                    Pessoa oldPessoaOfContatoPessoasNewContatoPessoa = contatoPessoasNewContatoPessoa.getPessoa();
-                    contatoPessoasNewContatoPessoa.setPessoa(pessoa);
-                    contatoPessoasNewContatoPessoa = em.merge(contatoPessoasNewContatoPessoa);
-                    if (oldPessoaOfContatoPessoasNewContatoPessoa != null && !oldPessoaOfContatoPessoasNewContatoPessoa.equals(pessoa)) {
-                        oldPessoaOfContatoPessoasNewContatoPessoa.getContatoPessoas().remove(contatoPessoasNewContatoPessoa);
-                        oldPessoaOfContatoPessoasNewContatoPessoa = em.merge(oldPessoaOfContatoPessoasNewContatoPessoa);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -151,16 +86,6 @@ public class PessoaJpaController implements Serializable {
                 pessoa.getIdPessoa();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pessoa with id " + id + " no longer exists.", enfe);
-            }
-            Rg rg = pessoa.getRg();
-            if (rg != null) {
-                rg.getPessoas().remove(pessoa);
-                rg = em.merge(rg);
-            }
-            List<ContatoPessoa> contatoPessoas = pessoa.getContatoPessoas();
-            for (ContatoPessoa contatoPessoasContatoPessoa : contatoPessoas) {
-                contatoPessoasContatoPessoa.setPessoa(null);
-                contatoPessoasContatoPessoa = em.merge(contatoPessoasContatoPessoa);
             }
             em.remove(pessoa);
             em.getTransaction().commit();
@@ -216,5 +141,5 @@ public class PessoaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

@@ -37,13 +37,13 @@ public class MesorregiaoTest {
         mesorregiao.setCodIbgeMesorregiao(gerador.nextInt(10000));
         mesorregiao.setEstado(estado);
         mesorregiao.setNomeMesorregiao(String.valueOf(gerador.nextInt(10000)));
-        mesorregiao.setSiglaMesorregiao(String.valueOf(gerador.nextInt(10000)));
+        mesorregiao.setSiglaMesorregiao(String.valueOf(gerador.nextInt(99)));
 
         mesorregiao2 = new Mesorregiao();
-        mesorregiao.setCodIbgeMesorregiao(gerador.nextInt(10000));
-        mesorregiao.setEstado(estado);
-        mesorregiao.setNomeMesorregiao(String.valueOf(gerador.nextInt(10000)));
-        mesorregiao.setSiglaMesorregiao(String.valueOf(gerador.nextInt(10000)));
+        mesorregiao2.setCodIbgeMesorregiao(gerador.nextInt(10000));
+        mesorregiao2.setEstado(estado);
+        mesorregiao2.setNomeMesorregiao(String.valueOf(gerador.nextInt(10000)));
+        mesorregiao2.setSiglaMesorregiao(String.valueOf(gerador.nextInt(99)));
     }
 
     @Test

@@ -6,18 +6,20 @@
 
 package br.labican.ufrn.sabia.dao.dadospessoais;
 
-import br.labican.ufrn.sabia.dao.dadospessoais.exceptions.NonexistentEntityException;
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import br.labican.ufrn.sabia.modelo.dadospessoais.ContatoPessoa;
-import br.labican.ufrn.sabia.modelo.dadospessoais.TipoContato;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import br.labican.ufrn.sabia.dao.dadospessoais.exceptions.NonexistentEntityException;
+import br.labican.ufrn.sabia.modelo.dadospessoais.ContatoPessoa;
+import br.labican.ufrn.sabia.modelo.dadospessoais.TipoContato;
 
 /**
  *
@@ -42,22 +44,7 @@ public class TipoContatoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            List<ContatoPessoa> attachedContatoPessoas = new ArrayList<ContatoPessoa>();
-            for (ContatoPessoa contatoPessoasContatoPessoaToAttach : tipoContato.getContatoPessoas()) {
-                contatoPessoasContatoPessoaToAttach = em.getReference(contatoPessoasContatoPessoaToAttach.getClass(), contatoPessoasContatoPessoaToAttach.getIdContatoPessoa());
-                attachedContatoPessoas.add(contatoPessoasContatoPessoaToAttach);
-            }
-            tipoContato.setContatoPessoas(attachedContatoPessoas);
             em.persist(tipoContato);
-            for (ContatoPessoa contatoPessoasContatoPessoa : tipoContato.getContatoPessoas()) {
-                TipoContato oldTipoContatoOfContatoPessoasContatoPessoa = contatoPessoasContatoPessoa.getTipoContato();
-                contatoPessoasContatoPessoa.setTipoContato(tipoContato);
-                contatoPessoasContatoPessoa = em.merge(contatoPessoasContatoPessoa);
-                if (oldTipoContatoOfContatoPessoasContatoPessoa != null) {
-                    oldTipoContatoOfContatoPessoasContatoPessoa.getContatoPessoas().remove(contatoPessoasContatoPessoa);
-                    oldTipoContatoOfContatoPessoasContatoPessoa = em.merge(oldTipoContatoOfContatoPessoasContatoPessoa);
-                }
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -71,34 +58,7 @@ public class TipoContatoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            TipoContato persistentTipoContato = em.find(TipoContato.class, tipoContato.getIdTipoContato());
-            List<ContatoPessoa> contatoPessoasOld = persistentTipoContato.getContatoPessoas();
-            List<ContatoPessoa> contatoPessoasNew = tipoContato.getContatoPessoas();
-            List<ContatoPessoa> attachedContatoPessoasNew = new ArrayList<ContatoPessoa>();
-            for (ContatoPessoa contatoPessoasNewContatoPessoaToAttach : contatoPessoasNew) {
-                contatoPessoasNewContatoPessoaToAttach = em.getReference(contatoPessoasNewContatoPessoaToAttach.getClass(), contatoPessoasNewContatoPessoaToAttach.getIdContatoPessoa());
-                attachedContatoPessoasNew.add(contatoPessoasNewContatoPessoaToAttach);
-            }
-            contatoPessoasNew = attachedContatoPessoasNew;
-            tipoContato.setContatoPessoas(contatoPessoasNew);
             tipoContato = em.merge(tipoContato);
-            for (ContatoPessoa contatoPessoasOldContatoPessoa : contatoPessoasOld) {
-                if (!contatoPessoasNew.contains(contatoPessoasOldContatoPessoa)) {
-                    contatoPessoasOldContatoPessoa.setTipoContato(null);
-                    contatoPessoasOldContatoPessoa = em.merge(contatoPessoasOldContatoPessoa);
-                }
-            }
-            for (ContatoPessoa contatoPessoasNewContatoPessoa : contatoPessoasNew) {
-                if (!contatoPessoasOld.contains(contatoPessoasNewContatoPessoa)) {
-                    TipoContato oldTipoContatoOfContatoPessoasNewContatoPessoa = contatoPessoasNewContatoPessoa.getTipoContato();
-                    contatoPessoasNewContatoPessoa.setTipoContato(tipoContato);
-                    contatoPessoasNewContatoPessoa = em.merge(contatoPessoasNewContatoPessoa);
-                    if (oldTipoContatoOfContatoPessoasNewContatoPessoa != null && !oldTipoContatoOfContatoPessoasNewContatoPessoa.equals(tipoContato)) {
-                        oldTipoContatoOfContatoPessoasNewContatoPessoa.getContatoPessoas().remove(contatoPessoasNewContatoPessoa);
-                        oldTipoContatoOfContatoPessoasNewContatoPessoa = em.merge(oldTipoContatoOfContatoPessoasNewContatoPessoa);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -127,11 +87,6 @@ public class TipoContatoJpaController implements Serializable {
                 tipoContato.getIdTipoContato();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tipoContato with id " + id + " no longer exists.", enfe);
-            }
-            List<ContatoPessoa> contatoPessoas = tipoContato.getContatoPessoas();
-            for (ContatoPessoa contatoPessoasContatoPessoa : contatoPessoas) {
-                contatoPessoasContatoPessoa.setTipoContato(null);
-                contatoPessoasContatoPessoa = em.merge(contatoPessoasContatoPessoa);
             }
             em.remove(tipoContato);
             em.getTransaction().commit();
@@ -187,5 +142,5 @@ public class TipoContatoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

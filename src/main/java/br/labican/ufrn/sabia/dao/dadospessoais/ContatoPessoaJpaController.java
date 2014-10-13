@@ -39,25 +39,7 @@ public class ContatoPessoaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Pessoa pessoa = contatoPessoa.getPessoa();
-            if (pessoa != null) {
-                pessoa = em.getReference(pessoa.getClass(), pessoa.getIdPessoa());
-                contatoPessoa.setPessoa(pessoa);
-            }
-            TipoContato tipoContato = contatoPessoa.getTipoContato();
-            if (tipoContato != null) {
-                tipoContato = em.getReference(tipoContato.getClass(), tipoContato.getIdTipoContato());
-                contatoPessoa.setTipoContato(tipoContato);
-            }
             em.persist(contatoPessoa);
-            if (pessoa != null) {
-                pessoa.getContatoPessoas().add(contatoPessoa);
-                pessoa = em.merge(pessoa);
-            }
-            if (tipoContato != null) {
-                tipoContato.getContatoPessoas().add(contatoPessoa);
-                tipoContato = em.merge(tipoContato);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -71,36 +53,7 @@ public class ContatoPessoaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ContatoPessoa persistentContatoPessoa = em.find(ContatoPessoa.class, contatoPessoa.getIdContatoPessoa());
-            Pessoa pessoaOld = persistentContatoPessoa.getPessoa();
-            Pessoa pessoaNew = contatoPessoa.getPessoa();
-            TipoContato tipoContatoOld = persistentContatoPessoa.getTipoContato();
-            TipoContato tipoContatoNew = contatoPessoa.getTipoContato();
-            if (pessoaNew != null) {
-                pessoaNew = em.getReference(pessoaNew.getClass(), pessoaNew.getIdPessoa());
-                contatoPessoa.setPessoa(pessoaNew);
-            }
-            if (tipoContatoNew != null) {
-                tipoContatoNew = em.getReference(tipoContatoNew.getClass(), tipoContatoNew.getIdTipoContato());
-                contatoPessoa.setTipoContato(tipoContatoNew);
-            }
             contatoPessoa = em.merge(contatoPessoa);
-            if (pessoaOld != null && !pessoaOld.equals(pessoaNew)) {
-                pessoaOld.getContatoPessoas().remove(contatoPessoa);
-                pessoaOld = em.merge(pessoaOld);
-            }
-            if (pessoaNew != null && !pessoaNew.equals(pessoaOld)) {
-                pessoaNew.getContatoPessoas().add(contatoPessoa);
-                pessoaNew = em.merge(pessoaNew);
-            }
-            if (tipoContatoOld != null && !tipoContatoOld.equals(tipoContatoNew)) {
-                tipoContatoOld.getContatoPessoas().remove(contatoPessoa);
-                tipoContatoOld = em.merge(tipoContatoOld);
-            }
-            if (tipoContatoNew != null && !tipoContatoNew.equals(tipoContatoOld)) {
-                tipoContatoNew.getContatoPessoas().add(contatoPessoa);
-                tipoContatoNew = em.merge(tipoContatoNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -129,16 +82,6 @@ public class ContatoPessoaJpaController implements Serializable {
                 contatoPessoa.getIdContatoPessoa();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The contatoPessoa with id " + id + " no longer exists.", enfe);
-            }
-            Pessoa pessoa = contatoPessoa.getPessoa();
-            if (pessoa != null) {
-                pessoa.getContatoPessoas().remove(contatoPessoa);
-                pessoa = em.merge(pessoa);
-            }
-            TipoContato tipoContato = contatoPessoa.getTipoContato();
-            if (tipoContato != null) {
-                tipoContato.getContatoPessoas().remove(contatoPessoa);
-                tipoContato = em.merge(tipoContato);
             }
             em.remove(contatoPessoa);
             em.getTransaction().commit();
@@ -194,5 +137,5 @@ public class ContatoPessoaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }
