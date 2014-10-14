@@ -52,7 +52,7 @@ CREATE TABLE macrorregiao(
 CREATE TABLE estado(
     id_estado                       SERIAL      NOT NULL,
     nome_estado                     TEXT        NOT NULL,
-    sigla_estado                    CHAR(2)     NOT NULL,
+    sigla_estado                    CHAR(2)     NOT NULL UNIQUE,
     cod_ibge_estado                 INTEGER     NOT NULL UNIQUE,
     cod_macrorregiao                INTEGER     NOT NULL,
 
@@ -63,7 +63,7 @@ CREATE TABLE estado(
 CREATE TABLE mesorregiao(
     id_mesorregiao                  SERIAL      NOT NULL,
     nome_mesorregiao                TEXT        NOT NULL,
-    sigla_mesorregiao               CHAR(2)     NOT NULL,
+    sigla_mesorregiao               CHAR(3)     NOT NULL UNIQUE,
     cod_ibge_mesorregiao            INTEGER     NOT NULL UNIQUE,
     cod_estado                      INTEGER     NOT NULL,
 
@@ -94,7 +94,7 @@ CREATE TABLE cidade(
 CREATE TABLE pais(
     id_pais                         SERIAL      NOT NULL,
     nome_pais                       TEXT        NOT NULL,
-    sigla_pais                      CHAR(2)     NOT NULL,
+    sigla_pais                      CHAR(3)     NOT NULL UNIQUE,
     cod_ibge_pais                   INTEGER     NOT NULL UNIQUE,
 
     PRIMARY KEY(id_pais)
