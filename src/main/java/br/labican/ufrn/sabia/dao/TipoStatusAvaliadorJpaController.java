@@ -29,9 +29,6 @@ public class TipoStatusAvaliadorJpaController implements Serializable {
     }
 
     public void create(TipoStatusAvaliador tipoStatusAvaliador) {
-        if (tipoStatusAvaliador.getStatusAvaliadors() == null) {
-            tipoStatusAvaliador.setStatusAvaliadors(new ArrayList<StatusAvaliador>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

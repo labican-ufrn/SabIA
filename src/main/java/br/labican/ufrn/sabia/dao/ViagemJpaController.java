@@ -29,9 +29,6 @@ public class ViagemJpaController implements Serializable {
     }
 
     public void create(Viagem viagem) {
-        if (viagem.getAtividades() == null) {
-            viagem.setAtividades(new ArrayList<Atividade>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

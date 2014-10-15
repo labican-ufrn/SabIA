@@ -30,9 +30,6 @@ public class AvaliacaoJpaController implements Serializable {
     }
 
     public void create(Avaliacao avaliacao) {
-        if (avaliacao.getEquipes() == null) {
-            avaliacao.setEquipes(new ArrayList<Equipe>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

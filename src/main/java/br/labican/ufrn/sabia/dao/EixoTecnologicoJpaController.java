@@ -29,9 +29,6 @@ public class EixoTecnologicoJpaController implements Serializable {
     }
 
     public void create(EixoTecnologico eixoTecnologico) {
-        if (eixoTecnologico.getAvaliadors() == null) {
-            eixoTecnologico.setAvaliadors(new ArrayList<Avaliador>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

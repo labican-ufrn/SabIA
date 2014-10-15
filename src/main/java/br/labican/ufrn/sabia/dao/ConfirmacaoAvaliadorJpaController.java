@@ -29,9 +29,6 @@ public class ConfirmacaoAvaliadorJpaController implements Serializable {
     }
 
     public void create(ConfirmacaoAvaliador confirmacaoAvaliador) {
-        if (confirmacaoAvaliador.getViagems() == null) {
-            confirmacaoAvaliador.setViagems(new ArrayList<Viagem>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

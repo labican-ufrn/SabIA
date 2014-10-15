@@ -31,15 +31,6 @@ public class InstituicaoJpaController implements Serializable {
     }
 
     public void create(Instituicao instituicao) {
-        if (instituicao.getAvaliacaos() == null) {
-            instituicao.setAvaliacaos(new ArrayList<Avaliacao>());
-        }
-        if (instituicao.getAvaliadors() == null) {
-            instituicao.setAvaliadors(new ArrayList<Avaliador>());
-        }
-        if (instituicao.getContatoInstituicaos() == null) {
-            instituicao.setContatoInstituicaos(new ArrayList<ContatoInstituicao>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

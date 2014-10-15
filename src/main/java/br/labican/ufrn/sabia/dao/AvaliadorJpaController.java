@@ -31,15 +31,6 @@ public class AvaliadorJpaController implements Serializable {
     }
 
     public void create(Avaliador avaliador) {
-        if (avaliador.getEixoTecnologicos() == null) {
-            avaliador.setEixoTecnologicos(new ArrayList<EixoTecnologico>());
-        }
-        if (avaliador.getConfirmacaoAvaliadors() == null) {
-            avaliador.setConfirmacaoAvaliadors(new ArrayList<ConfirmacaoAvaliador>());
-        }
-        if (avaliador.getEquipes() == null) {
-            avaliador.setEquipes(new ArrayList<Equipe>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

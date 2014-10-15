@@ -29,9 +29,6 @@ public class ProjetoJpaController implements Serializable {
     }
 
     public void create(Projeto projeto) {
-        if (projeto.getAvaliacaos() == null) {
-            projeto.setAvaliacaos(new ArrayList<Avaliacao>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
