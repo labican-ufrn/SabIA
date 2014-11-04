@@ -8,82 +8,82 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   
+
     <h:body>
         <h:form>
             <p:panel id="panel"     >
 
                 <h:panelGrid columns="6" >
 
-                    <h:outputLabel for="nome" value="Nome: *" />  
-                    <p:inputText id="nome" size="50" 
-                                 requiredMessage="Campo Obrigatório" required="true" label="Nome"/>  
+                    <h:outputLabel for="nome" value="Nome: *" />
+                    <p:inputText id="nome" size="50"
+                                 requiredMessage="Campo Obrigat&oacuterio" required="true" label="Nome"/>
                     <p:message for="nome" />
-                    
+
                     <h:outputLabel for="sobrenome" value="Sobrenome: *" />
                     <p:inputText id="sobrenome"
-                                 requiredMessage="Campo Obrigatório" required="true" label="Sobrenome"/>
+                                 requiredMessage="Campo Obrigat&oacuterio" required="true" label="Sobrenome"/>
                     <p:message for="sobrenome"/>
-                    
-                    <h:outputLabel for="sexo" value="Sexo: " />  
-                    <h:selectOneMenu id="eixo_tecnologico" requiredMessage="Campo Obrigatório" required="true">
+
+                    <h:outputLabel for="sexo" value="Sexo: " />
+                    <h:selectOneMenu id="sexo" requiredMessage="Campo Obrigat&oacuterio" required="true">
                         <f:selectItem itemLabel="Selecione um sexo" itemValue=""/>
                         <f:selectItem itemLabel="Masculino" itemValue=""/>
                         <f:selectItem itemLabel="Feminino" itemValue=""/>
                         <f:selectItems var="c"/>
                     </h:selectOneMenu>
                     <br/>
-                  
-                    <h:outputLabel for="email" value="Email: *" />  
-                    <p:inputText id="email" maxlength="40" validatorMessage="nome@example.com" requiredMessage="Campo Obrigatório" required="true" label="Email">     
+
+                    <h:outputLabel for="email" value="Email: *" />
+                    <p:inputText id="email" maxlength="40" validatorMessage="nome@example.com" requiredMessage="Campo Obrigat&oacuterio" required="true" label="Email">
                         <f:validateRegex for="email" pattern="^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$"/>
                     </p:inputText>
-                    <p:message for="email" />                     
-                    
-                    <h:outputLabel for="telefone" value="Telefone: " />  
-                    <p:inputMask id="telefone" mask="(  )     -    " label="Telefone"/>  
+                    <p:message for="email" />
+
+                    <h:outputLabel for="telefone" value="Telefone: " />
+                    <p:inputMask id="telefone" mask="(  )     -    " label="Telefone"/>
                     <p:message for="telefone"/>
-                    
-                    <h:outputLabel for="nacionalidade" value="Nacionalidade: " />  
+
+                    <h:outputLabel for="nacionalidade" value="Nacionalidade: " />
                     <p:inputText id="nacionalidade" label="Nacionalidade"/>
-                    <p:message for="nacionalidade"/>                    
-                    
-                    <h:outputLabel for="rg" value="RG: *" />  
-                    <p:inputText id="rg" label="RG" rendered="true" requiredMessage="Campo Obrigatório"/>  
+                    <p:message for="nacionalidade"/>
+
+                    <h:outputLabel for="rg" value="RG: *" />
+                    <p:inputText id="rg" label="RG" rendered="true" requiredMessage="Campo Obrigat&oacuterio"/>
                     <p:message for="rg"/>
-                    
-                    
-                    <h:outputLabel for="orgao_emissor" value="Órgão Emissor: " />  
+
+
+                    <h:outputLabel for="orgao_emissor" value="&Oacuterg&atildeo Emissor: " />
                     <p:inputText id="orgao_emissor" label="OrgaoEmissor"/>
                     <br/>
-                    
-                    <h:outputLabel for="uf_orgao_emissor" value="UF do Órgão Emissor: " />  
+
+                    <h:outputLabel for="uf_orgao_emissor" value="UF do &Oacute�rg&atildeo Emissor: " />
                     <p:inputText id="uf_orgao_emissor" label="UFOrgaoEmissor"/>
                     <br/>
-                    
-                    <h:outputLabel for="data_expedicao" value="Data de Expedição: " />  
-                    <p:calendar pattern="d/M/yyyy" id="data_expedicao" label="DataExpedicao"/>                    
+
+                    <h:outputLabel for="data_expedicao" value="Data de Expedi&atildeo: " />
+                    <p:calendar pattern="d/M/yyyy" id="data_expedicao" label="DataExpedicao"/>
                     <p:message for="data_expedicao"/>
-                    
-                    <h:outputLabel for="data_nascimento" value="Data de Nascimento: " />  
-                    <p:calendar pattern="dd/MM/yyyy" id="data_nascimento" label="DataNascimento"/>                    
+
+                    <h:outputLabel for="data_nascimento" value="Data de Nascimento: " />
+                    <p:calendar pattern="dd/MM/yyyy" id="data_nascimento" label="DataNascimento"/>
                     <p:message for="data_nascimento"/>
-                    
-                    <h:outputLabel for="cpf" value="CPF: *" />  
-                    <p:inputMask id="cpf" mask="999.999.999-99" label="CPF" 
-                                 requiredMessage="Campo Obrigatório" rendered="true"/>  
-                    <p:message for="cpf"/>  
-                    
-                    <h:outputLabel for="uf_residencia" value="UF de Residência: " />  
+
+                    <h:outputLabel for="cpf" value="CPF: *" />
+                    <p:inputMask id="cpf" mask="999.999.999-99" label="CPF"
+                                 requiredMessage="Campo Obrigat&oacuterio" rendered="true"/>
+                    <p:message for="cpf"/>
+
+                    <h:outputLabel for="uf_residencia" value="UF de Residência: " />
                     <p:inputText id="uf_residencia" label="UFResidencia"/>
                     <br/>
-                    
-                    <h:outputLabel for="municipio_residencia" value="Municipio de Residência: " />  
+
+                    <h:outputLabel for="municipio_residencia" value="Municipio de Residência: " />
                     <p:inputText id="municipio_residencia" label="MunicipioResidencia"/>
                     <br/>
-                    
+
                 </h:panelGrid>
-                
+
             </p:panel>
             <br/>
         </h:form>

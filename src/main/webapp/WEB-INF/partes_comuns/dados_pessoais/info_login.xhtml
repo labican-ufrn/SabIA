@@ -14,21 +14,20 @@ and open the template in the editor.
         <div>
             <h:form>
                 <p:panelGrid>
-                    <h:outputLabel for="matricula" value="Matr�cula: *" />  
-                    <p:inputMask mask="9999999999" id="matricula" maxlength="10" required="true" requiredMessage="Campo Obrigat�rio" label="Matricula"/>  
-                    <p:message for="matricula" /> 
+                    <h:outputLabel for="login" value="Login: " />
+                    <h:inputText readonly="true"></h:inputText>
 
-                    <h:outputLabel for="pwd1" value="Senha: *" />  
-                    <p:password id="pwd1" value="#{usuarioMB.usuario.senha}"   requiredMessage="Campo Obrigat�rio" feedback="true" label="Senha" required="true"/>  
+                    <h:outputLabel for="pwd1" value="Senha: *" />
+                    <p:password id="pwd1" value="#{usuarioMB.usuario.senha}"   requiredMessage="Campo Obrigat�rio" feedback="true" label="Senha" required="true"/>
                     <p:message for="pwd1"/>
 
-                    <h:outputLabel for="pwd2" value="Confirme a senha: *" />  
-                    <p:password id="pwd2" value="#{usuarioMB.confirmacao}" requiredMessage="Campo Obrigat�rio" label="Confirma��o" required="true"/>  
+                    <h:outputLabel for="pwd2" value="Confirme a senha: *" />
+                    <p:password id="pwd2" value="#{usuarioMB.confirmacao}" requiredMessage="Campo Obrigat�rio" label="Confirma��o" required="true"/>
                     <p:message for="pwd2"/>
                 </p:panelGrid>
             </h:form>
         </div>
-        
-        
+
+
     </body>
 </html>
