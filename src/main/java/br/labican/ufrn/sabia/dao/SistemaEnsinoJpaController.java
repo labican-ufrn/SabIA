@@ -29,9 +29,6 @@ public class SistemaEnsinoJpaController implements Serializable {
     }
 
     public void create(SistemaEnsino sistemaEnsino) {
-        if (sistemaEnsino.getInstituicaos() == null) {
-            sistemaEnsino.setInstituicaos(new ArrayList<Instituicao>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

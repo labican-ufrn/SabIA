@@ -30,12 +30,6 @@ public class SemanaAvaliacaoJpaController implements Serializable {
     }
 
     public void create(SemanaAvaliacao semanaAvaliacao) {
-        if (semanaAvaliacao.getAvaliacaos() == null) {
-            semanaAvaliacao.setAvaliacaos(new ArrayList<Avaliacao>());
-        }
-        if (semanaAvaliacao.getDisponibilidades() == null) {
-            semanaAvaliacao.setDisponibilidades(new ArrayList<Disponibilidade>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

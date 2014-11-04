@@ -29,9 +29,6 @@ public class CargoJpaController implements Serializable {
     }
 
     public void create(Cargo cargo) {
-        if (cargo.getAvaliadors() == null) {
-            cargo.setAvaliadors(new ArrayList<Avaliador>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();

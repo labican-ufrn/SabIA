@@ -29,9 +29,6 @@ public class TipoInstituicaoJpaController implements Serializable {
     }
 
     public void create(TipoInstituicao tipoInstituicao) {
-        if (tipoInstituicao.getInstituicaos() == null) {
-            tipoInstituicao.setInstituicaos(new ArrayList<Instituicao>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
