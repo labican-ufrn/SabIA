@@ -5,10 +5,11 @@
  */
 package org.labican.sabia.modelo;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.labican.sabia.dao.CidadeDAO;
+import org.labican.sabia.dao.EnderecoDAO;
 
 /**
  *
@@ -16,8 +17,55 @@ import static org.junit.Assert.*;
  */
 public class EnderecoTest {
     Endereco e;
+    EnderecoDAO eDAO;
+    CidadeDAO cDAO;
+    List<Endereco> enderecos;
     
+    @Before
+    public void iniciar(){
+        eDAO = new EnderecoDAO(org.labican.sabia.util.JPAUtil.EMF);
+        cDAO = new CidadeDAO(org.labican.sabia.util.JPAUtil.EMF);
+        e = new Endereco();
+        enderecos = eDAO.pesquisarTodos();
+        
+        if(!enderecos.isEmpty()){
+            e = enderecos.get(0);
+        }
+        e.setBairro("teste1");
+        e.setCidade(cDAO.pesquisarTodos().get(0));
+        e.setComplemento("teste2");
+        e.setLogradouro("teste3");
+        e.setNumero("teste4");
+        e.setPontoReferencia("teste5");
+        e.setTipo("teste6");
+    }
     
+    @Test
+    public void testInserir(){
+        eDAO.criar(e);
+    }
     
+    @Test
+    public void testEditar() throws Exception{
+        enderecos = eDAO.pesquisarTodos();
+        if(!enderecos.isEmpty()){
+            e = enderecos.get(0);        
+        }
+        e.setBairro("dsfs");
+         eDAO.editar(e);
+    }
     
+    @Test
+    public void testPesquisar(){
+        enderecos = eDAO.pesquisarTodos();
+    }
+    
+    @Test
+    public void testExcluir() throws Exception{
+        enderecos = eDAO.pesquisarTodos();
+        if(!enderecos.isEmpty()){
+            e = enderecos.get(0);           
+        }    
+        eDAO.excluir(e.getId());
+    }
 }
