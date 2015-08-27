@@ -11,7 +11,7 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/sabiabd"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sabiabd"/>
       <property name="javax.persistence.jdbc.user" value="usuario_sabia"/>
       <property name="javax.persistence.jdbc.password" value="#sabia#labican"/>
     </properties>
