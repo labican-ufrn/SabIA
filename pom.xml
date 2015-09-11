@@ -19,7 +19,6 @@
         <jsf.impl.version>2.2.12</jsf.impl.version>
         <jstl.version>1.2</jstl.version>
         <eclipselink.version>2.6.0</eclipselink.version>
-        <persistence.jpa.version>2.6.0</persistence.jpa.version>
         <postgresql.version>9.4-1201-jdbc41</postgresql.version>
         <junit.version>4.12</junit.version>
         <spring.security.version>4.0.2.RELEASE</spring.security.version>
@@ -67,7 +66,7 @@
         </dependency>
         
         <!-- PERSISTENCE -->
-        <dependency>
+         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>${eclipselink.version}</version>
@@ -75,7 +74,7 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>${persistence.jpa.version}</version>
+            <version>${eclipselink.version}</version>
             <scope>provided</scope>
         </dependency>
         
@@ -90,7 +89,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         
