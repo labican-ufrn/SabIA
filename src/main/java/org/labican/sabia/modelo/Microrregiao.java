@@ -23,7 +23,7 @@ public class Microrregiao implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_microrregiao")
     private Integer id;
     
@@ -91,12 +91,12 @@ public class Microrregiao implements Serializable {
     //metodos para o relacionamento bidirecional
     public void addCidade(Cidade cidade) {
         cidade.setMicrorregiao(this);
-        getCidades().add(cidade);
+        this.getCidades().add(cidade);
     }
     
     public void removeCidade(Cidade cidade) {
         cidade.setMicrorregiao(this);
-        getCidades().remove(cidade);
+        this.getCidades().remove(cidade);
     }
     
     private final Microrregiao getInstance() {

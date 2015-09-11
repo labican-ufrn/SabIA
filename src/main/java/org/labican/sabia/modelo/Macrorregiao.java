@@ -21,7 +21,7 @@ public class Macrorregiao implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_macrorregiao")
     private Integer id;
     
@@ -63,7 +63,7 @@ public class Macrorregiao implements Serializable {
         return estados;
     }
     
-    //sets
+    //sets    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -75,11 +75,11 @@ public class Macrorregiao implements Serializable {
     //metodos para o relacionamento bidirecional
     public void addEstado(Estado estado) {
         estado.setMacrorregiao(this);
-        getEstados().add(estado);
+        this.getEstados().add(estado);
     }
     
     public void removeEstado(Estado estado) {
         estado.setMacrorregiao(null);
-        getEstados().remove(estado);
+        this.getEstados().remove(estado);
     }
 }

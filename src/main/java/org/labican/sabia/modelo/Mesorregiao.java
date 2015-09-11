@@ -24,7 +24,7 @@ public class Mesorregiao implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mesorregiao")
     private Integer id;
     
@@ -106,12 +106,12 @@ public class Mesorregiao implements Serializable {
     //metodos para o relacionamento bidirecional
     public void addMicrorregiao(Microrregiao microrregiao) {
         microrregiao.setMesorregiao(this);
-        getMicrorregioes().add(microrregiao);
+        this.getMicrorregioes().add(microrregiao);
     }
     
     public void removeMicrorregiao(Microrregiao microrregiao) {
         microrregiao.setMesorregiao(null);
-        getMicrorregioes().remove(microrregiao);
+        this.getMicrorregioes().remove(microrregiao);
     }
     
     private final Mesorregiao getInstance() {

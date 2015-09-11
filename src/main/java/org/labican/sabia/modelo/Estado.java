@@ -24,7 +24,7 @@ public class Estado implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estado")
     private Integer id;
     
@@ -106,12 +106,12 @@ public class Estado implements Serializable {
     //metodos para o relacionamento bidirecional
     public void addMesorregiao(Mesorregiao mesorregiao) {
         mesorregiao.setEstado(this);
-        getMesorregioes().add(mesorregiao);
+        this.getMesorregioes().add(mesorregiao);
     }
     
     public void removeMesorregiao(Mesorregiao mesorregiao) {
         mesorregiao.setEstado(null);
-        getMesorregioes().remove(mesorregiao);
+        this.getMesorregioes().remove(mesorregiao);
     }
     
     private final Estado getInstance() {
