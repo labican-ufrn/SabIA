@@ -74,4 +74,4 @@ CREATE TABLE endereco(
 
     PRIMARY KEY(id_endereco),
     FOREIGN KEY(cod_cidade)                     REFERENCES cidade(id_cidade)
-)
+);
