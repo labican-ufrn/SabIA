@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <Context antiJARLocking="true" path="/sabia"/>
+=======
+<Context antiJARLocking="true" path="/SabIA"/>
+>>>>>>> 426371365c31896c99494c3d862a5ed665622d72
