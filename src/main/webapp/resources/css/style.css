@@ -537,7 +537,12 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: #688a7e;
+    color: #D7D7D7;
+    margin-left: 30px;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
 }
 
 
