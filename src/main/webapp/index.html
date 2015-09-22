@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
     <head>
-        <title>Sistema de Agrupamentos Inteligentes</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset = "UTF-8">
+        <title>CMS Using AJAX</title>
+        
+        <script type = "text/javascript" src = "resources/js/jquery-1.10.2.min.js"></script>
+        <script type = "text/javascript">
+            $(init);
+            function init() {
+                $("#heading").load("partes_comuns/cabecalho.html");
+                
+            };
+        </script>
     </head>
     <body>
-        <h1>Indisponível no momento!</h1>
+        <div id = "all">
+
+            <!-- cabeçalho -->
+            <div id = "heading">
+            </div>
+            <!-- fim do cabeçalho -->
+            
+        </div>
+
     </body>
 </html>
+
+<!--
+<div id = "menu">
+            </div> <!-- end menu div →
+            <div class = "content"
+             id = "content1">
+            </div> <!-- end content div →
+            <div class = "content"
+             id = "content2">
+            </div> <!-- end content div →
+            <div id = "footer">
+            </div> <!-- end footer div →
+           </div> <!-- end all div →
+            
+            $("#menu").load("menu.html");
+                $("#content1").load("story1.html");
+                $("#content2").load("story2.html");
+                $("#footer").load("footer.html"); -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Operador</title>
+        <!-- Bootstrap CSS -->    
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap theme -->
+        <link href="resources/css/bootstrap-theme.css" rel="stylesheet">
+        <!--external css-->
+        <!-- font icon -->
+        <link href="resources/css/elegant-icons-style.css" rel="stylesheet" />
+        <link href="resources/css/font-awesome.min.css" rel="stylesheet" />    
+       
+        <!-- owl carousel -->
+        <link rel="stylesheet" href="resources/css/owl.carousel.css" type="text/css">
+        <link href="resources/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+        <!-- Custom styles -->
+        <link rel="stylesheet" href="resources/css/fullcalendar.css">
+        <link href="resources/css/widgets.css" rel="stylesheet">
+        <link href="resources/css/style.css" rel="stylesheet">
+        <link href="resources/css/style-responsive.css" rel="stylesheet" />
+        <link href="resources/css/xcharts.min.css" rel=" stylesheet">	
+        <link href="resources/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    </head>
+        
+        <!-- script para carregar múltiplas páginas no template -->
+        <script type = "text/javascript" src = "../resources/js/jquery-1.10.2.min.js"></script>
+        <script type = "text/javascript">
+            $(init);
+            function init() {
+                $("#heading").load("../partes_comuns/cabecalho.html");
+                $("#menu").load("menu.html");
+                $("#content").load("story1.html");
+                $("#footer").load("../partes_comuns/rodape.html");               
+            };
+        </script>
+        <!-- fim do script para carregar múltiplas páginas no template -->
+
+        
+    </head>
+    <body>
+        <div id = "all">
+            <!-- cabeçalho -->
+            <div id = "heading"></div>
+            <!-- fim do cabeçalho -->
+            <!-- menu-->
+            <div id = "menu"></div>
+            <!-- fim do menu -->
+            <!-- corpoo-->
+            <div id = "content"></div>
+            <!-- fim do corpo -->
+            <!-- rodape-->
+            <div id = "footer" class="footer" style="position: absolute; bottom: 0"></div>
+            <!-- fim do rodape -->            
+        </div>
+    </body>
+</html>
