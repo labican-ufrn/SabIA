@@ -2,14 +2,16 @@
 <html lang = "en">
     <head>
         <meta charset = "UTF-8">
-        <title>CMS Using AJAX</title>
+        <title>Operador</title>
         
-        <script type = "text/javascript" src = "resources/js/jquery-1.10.2.min.js"></script>
+        <script type = "text/javascript" src = "../resources/js/jquery-1.10.2.min.js"></script>
         <script type = "text/javascript">
             $(init);
             function init() {
-                $("#heading").load("partes_comuns/cabecalho.html");
-                
+                $("#heading").load("../partes_comuns/cabecalho.html");
+                $("#menu").load("menu.html");
+                $("#content").load("story1.html");
+                $("#footer").load("footer.html");               
             };
         </script>
     </head>
@@ -17,9 +19,11 @@
         <div id = "all">
 
             <!-- cabeçalho -->
-            <div id = "heading">
-            </div>
+            <div id = "heading"></div>
             <!-- fim do cabeçalho -->
+            <!-- menu-->
+            <div id = "menu"></div>
+            <!-- fim do menu -->
             
         </div>
 
