@@ -22,39 +22,37 @@
     <link href="resources/css/style.css" rel="stylesheet">
     <link href="resources/css/style-responsive.css" rel="stylesheet" />
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
 </head>
+    <body>
+        <div class="container">           
+            <form class="login-form">
+                <div class="login-wrap">
+                        <p class="login-img"><img src="resources/img/brasil.png" /></p>                                       
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <input type="text" class="form-control" placeholder="Usuário" autofocus>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                        <input type="password" class="form-control" placeholder="Senha">
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"> Lembre-me
+<!--                        <span class="pull-right"> <a href="#"> Forgot Password?</a></span>-->
+                    </label>                    
+                    <!--<button class="btn btn-primary btn-lg btn-block" type="submit">Entar</button>
+                    <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>--> 
+                    <a class="btn btn-primary btn-lg btn-block" href="template_operador.html">
+                        <span style="color:white;">Operador</span>
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" href="template_avaliador.html">
+                        <span style="color:white;">Avaliador</span>
+                    </a>
+                    
+                </div>
 
-  <body class="login-img3-body">
+            </form>
 
-    <div class="container">
-
-      <form class="login-form" action="index.html">        
-        <div class="login-wrap">
-            <p class="login-img"><i class="icon_lock_alt"></i></p>
-            <div class="input-group">
-              <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" placeholder="Username" autofocus>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
-            </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-            </label>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
         </div>
-      </form>
-
-    </div>
-
-
-  </body>
+    </body>
 </html>
