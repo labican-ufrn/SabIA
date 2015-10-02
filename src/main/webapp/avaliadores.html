@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+		
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<title>Test page</title>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="bootstrap.css" rel="stylesheet">
+</head>
+	<body>
+	
+	<div class="wrap">
+	<section>
+            <a href="PersonController?action=insert" role="button" class="btn btn-primary" data-toggle="modal">cadastrar</a>	
+
+            <div class="container">
+                <br/>
+                    <table class="table table-hover">
+                            <thead>
+                                    <tr>
+                                            <th>
+                                                    #
+                                            </th>
+                                            <th>
+                                                    Nome
+                                            </th>
+                                            <th>
+                                                    CPF
+                                            </th>
+                                            <th>
+                                                    Cargo
+                                            </th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                    <c:forEach items="${avaliadores}" var="avaliador">
+                                            <tr>
+                                                    <td>
+                                                            <c:out value="${avaliador.id_avaliador}"/>
+                                                    </td>
+                                                    <td>
+                                                            <c:out value="${avaliador.nome}"/>
+                                                    </td>
+                                                    <td>
+                                                            <c:out value="${avaliador.cpf}"/>
+                                                    </td>
+                                                    <td>
+                                                            <c:out value="${avaliador.cargo}"/>
+                                                    </td>
+                                                    <td><a href="PersonController?action=edit&personId=<c:out value='${person.personId}'/>">Update</a></td>
+                                                    <td><a href="PersonController?action=delete&personId=<c:out value='${person.personId}'/>">Delete</a></td>
+                                            </tr>
+                                    </c:forEach>
+                            </tbody>
+                    </table>
+            </div>
+	</section>	
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
