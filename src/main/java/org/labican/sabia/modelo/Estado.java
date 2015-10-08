@@ -37,10 +37,6 @@ public class Estado implements Serializable {
     @Column(name = "sigla_estado")
     private String sigla;
     
-    @Basic(optional = false)
-    @Column(name = "cod_ibge_estado")
-    private int codigoIBGE;
-    
     //bidirecional: dono do relacionamento
     @ManyToOne(optional = false)
     @JoinColumn(name = "cod_macrorregiao")
@@ -54,10 +50,9 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
-    public Estado(String nome, String sigla, int codigoIBGE, Macrorregiao macrorregiao) {
+    public Estado(String nome, String sigla, Macrorregiao macrorregiao) {
         this.nome = nome;
         this.sigla = sigla;
-        this.codigoIBGE = codigoIBGE;
         this.macrorregiao.addEstado(getInstance());
     }    
 
@@ -72,10 +67,6 @@ public class Estado implements Serializable {
     
     public String getSigla() {
         return sigla;
-    }
-    
-    public int getCodigoIBGE() {
-        return codigoIBGE;
     }
     
     public Macrorregiao getMacrorregiao() {
@@ -93,10 +84,6 @@ public class Estado implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
-    }
-
-    public void setCodigoIBGE(int codigoIBGE) {
-        this.codigoIBGE = codigoIBGE;
     }
 
     public void setMacrorregiao(Macrorregiao macrorregiao) {
