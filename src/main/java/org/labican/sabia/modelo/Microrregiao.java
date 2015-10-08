@@ -31,10 +31,6 @@ public class Microrregiao implements Serializable {
     @Column(name = "nome_microrregiao")
     private String nome;
     
-    @Basic(optional = false)
-    @Column(name = "cod_ibge_microrregiao")
-    private int codigoIBGE;
-    
     //bidirecional: dono do relacionamento
     @ManyToOne(optional = false)
     @JoinColumn(name = "cod_mesorregiao")
@@ -42,15 +38,14 @@ public class Microrregiao implements Serializable {
     
     //bidirecional
     @OneToMany(mappedBy = "microrregiao")
-    private List<Cidade> cidades;
+    private List<Municipio> municipios;
     
     //construtores
     public Microrregiao() {
     }
 
-    public Microrregiao(String nome, int codigoIBGE, Mesorregiao mesorregiao) {
+    public Microrregiao(String nome, Mesorregiao mesorregiao) {
         this.nome = nome;
-        this.codigoIBGE = codigoIBGE;
         this.mesorregiao.addMicrorregiao(getInstance());
     }
 
@@ -63,16 +58,12 @@ public class Microrregiao implements Serializable {
         return nome;
     }
     
-    public int getCodigoIBGE() {
-        return codigoIBGE;
-    }
-    
     public Mesorregiao getMesorregiao() {
         return mesorregiao;
     }
     
-    public List<Cidade> getCidades() {
-        return cidades;
+    public List<Municipio> getMunicipios() {
+        return municipios;
     }
     
     //sets
@@ -80,23 +71,19 @@ public class Microrregiao implements Serializable {
         this.nome = nome;
     }
 
-    public void setCodigoIBGE(int codigoIBGE) {
-        this.codigoIBGE = codigoIBGE;
-    }
-
     public void setMesorregiao(Mesorregiao mesorregiao) {
         this.mesorregiao = mesorregiao;
     }
     
     //metodos para o relacionamento bidirecional
-    public void addCidade(Cidade cidade) {
-        cidade.setMicrorregiao(this);
-        this.getCidades().add(cidade);
+    public void addMunicipio(Municipio municipio) {
+        municipio.setMicrorregiao(this);
+        this.getMunicipios().add(municipio);
     }
     
-    public void removeCidade(Cidade cidade) {
-        cidade.setMicrorregiao(this);
-        this.getCidades().remove(cidade);
+    public void removeMunicipio(Municipio municipio) {
+        municipio.setMicrorregiao(this);
+        this.getMunicipios().remove(municipio);
     }
     
     private final Microrregiao getInstance() {

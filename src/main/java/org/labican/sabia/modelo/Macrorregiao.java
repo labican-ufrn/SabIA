@@ -30,8 +30,8 @@ public class Macrorregiao implements Serializable {
     private String nome;
     
     @Basic(optional = false)
-    @Column(name = "cod_ibge_macrorregiao")
-    private int codigoIBGE;
+    @Column(name = "cod_mec_macrorregiao")
+    private int codigoMEC;
     
     //bidirecional
     @OneToMany(mappedBy = "macrorregiao")
@@ -41,9 +41,9 @@ public class Macrorregiao implements Serializable {
     public Macrorregiao() {
     }
 
-    public Macrorregiao(String nome, int codigoIBGE) {
+    public Macrorregiao(String nome, int codigoMEC) {
         this.nome = nome;
-        this.codigoIBGE = codigoIBGE;
+        this.codigoMEC = codigoMEC;
     }
     
     //gets
@@ -56,7 +56,7 @@ public class Macrorregiao implements Serializable {
     }
     
     public int getCodigoIBGE() {
-        return codigoIBGE;
+        return codigoMEC;
     }
     
     public List<Estado> getEstados() {
@@ -68,8 +68,8 @@ public class Macrorregiao implements Serializable {
         this.nome = nome;
     }
     
-    public void setCodigoIBGE(int codigoIBGE) {
-        this.codigoIBGE = codigoIBGE;
+    public void setCodigoIBGE(int codigoMEC) {
+        this.codigoMEC = codigoMEC;
     }
     
     //metodos para o relacionamento bidirecional
@@ -81,5 +81,9 @@ public class Macrorregiao implements Serializable {
     public void removeEstado(Estado estado) {
         estado.setMacrorregiao(null);
         this.getEstados().remove(estado);
+    }
+    
+    private final Macrorregiao getInstance() {
+        return this;
     }
 }

@@ -3,11 +3,14 @@
   <persistence-unit name="SABIA_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>org.labican.sabia.modelo.Mesorregiao</class>
-    <class>org.labican.sabia.modelo.Cidade</class>
     <class>org.labican.sabia.modelo.Macrorregiao</class>
     <class>org.labican.sabia.modelo.Endereco</class>
     <class>org.labican.sabia.modelo.Microrregiao</class>
     <class>org.labican.sabia.modelo.Estado</class>
+    <class>org.labican.sabia.modelo.Municipio</class>
+    <class>org.labican.sabia.modelo.Distrito</class>
+    <class>org.labican.sabia.modelo.Categoria</class>
+    <class>org.labican.sabia.modelo.Localidade</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

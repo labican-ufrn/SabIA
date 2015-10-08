@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -32,15 +31,6 @@ public class Mesorregiao implements Serializable {
     @Column(name = "nome_mesorregiao")
     private String nome;
     
-    @Basic(optional = false)
-    @Size(min = 3, max = 3)
-    @Column(name = "sigla_mesorregiao")
-    private String sigla;
-    
-    @Basic(optional = false)
-    @Column(name = "cod_ibge_mesorregiao")
-    private int codigoIBGE;
-    
     //bidirecional: dono do relacionamento
     @ManyToOne(optional = false)
     @JoinColumn(name = "cod_estado")
@@ -54,10 +44,8 @@ public class Mesorregiao implements Serializable {
     public Mesorregiao() {
     }
 
-    public Mesorregiao(String nome, String sigla, int codigoIBGE, Estado estado) {
+    public Mesorregiao(String nome, Estado estado) {
         this.nome = nome;
-        this.sigla = sigla;
-        this.codigoIBGE = codigoIBGE;
         this.estado.addMesorregiao(getInstance());
     }
     
@@ -68,14 +56,6 @@ public class Mesorregiao implements Serializable {
 
     public String getNome() {
         return nome;
-    }
-    
-    public String getSigla() {
-        return sigla;
-    }
-    
-    public int getCodigoIBGE() {
-        return codigoIBGE;
     }
     
     public Estado getEstado() {
@@ -89,14 +69,6 @@ public class Mesorregiao implements Serializable {
     //sets
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public void setCodigoIBGE(int codigoIBGE) {
-        this.codigoIBGE = codigoIBGE;
     }
 
     public void setEstado(Estado estado) {

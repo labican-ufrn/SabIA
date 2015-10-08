@@ -36,32 +36,34 @@ public class Endereco implements Serializable {
     @Column(name = "complemento")
     private String complemento;
     
+    @Basic(optional = false)
     @Column(name = "bairro")
     private String bairro;
     
     @Column(name = "ponto_referencia")
     private String pontoReferencia;
     
+    @Basic(optional = false)
     @Column(name = "tipo_endereco")
-    private String tipo;
+    private String tipo; //Ex: residencial ou comercial
     
     //unidirecional: dono do relacionamento
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cod_cidade")
-    private Cidade cidade;
+    @JoinColumn(name = "cod_localidade")
+    private Localidade localidade;
     
     //contrutores
     public Endereco() {
     }
 
-    public Endereco(String logradouro, String numero, String complemento, String bairro, String pontoReferencia, String tipo, Cidade cidade) {
+    public Endereco(String logradouro, String numero, String complemento, String bairro, String pontoReferencia, String tipo, Localidade localidade) {
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
         this.pontoReferencia = pontoReferencia;
         this.tipo = tipo;
-        this.cidade = cidade;
+        this.localidade = localidade;
     }
     
     //gets
@@ -93,8 +95,8 @@ public class Endereco implements Serializable {
         return tipo;
     }
 
-    public Cidade getCidade() {
-        return cidade;
+    public Localidade getLocalidade() {
+        return localidade;
     }
     
     //sets
@@ -122,7 +124,7 @@ public class Endereco implements Serializable {
         this.tipo = tipo;
     }  
 
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
     }    
 }
