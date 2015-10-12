@@ -9,7 +9,7 @@
     
     <!-- Configuração do arquivo inicial quando a aplicação for inicializada -->
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>operador/template.html</welcome-file>
     </welcome-file-list>
     
     <!-- Configuração do Controlador Faces Servlet -->
