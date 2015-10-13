@@ -45,7 +45,6 @@ DROP TABLE IF EXISTS avaliador_eixo CASCADE;
 DROP TABLE IF EXISTS projeto CASCADE;
 DROP TABLE IF EXISTS avaliador_projeto CASCADE;
 DROP TABLE IF EXISTS semana_avaliacao CASCADE;
-DROP TABLE IF EXISTS avaliador_eixo CASCADE;
 DROP TABLE IF EXISTS avaliador_disponibilidade CASCADE;
 DROP TABLE IF EXISTS disponibilidade_semana CASCADE;
 DROP TABLE IF EXISTS disponibilidade CASCADE;
