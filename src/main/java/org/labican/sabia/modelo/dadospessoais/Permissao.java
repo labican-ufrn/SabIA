@@ -1,4 +1,4 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.dadospessoais;
 
 import java.io.Serializable;
 import java.util.List;

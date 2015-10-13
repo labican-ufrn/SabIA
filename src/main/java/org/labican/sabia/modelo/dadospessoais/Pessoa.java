@@ -1,5 +1,7 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.dadospessoais;
 
+import org.labican.sabia.modelo.localizacao.Endereco;
+import org.labican.sabia.modelo.localizacao.Municipio;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import org.labican.sabia.modelo.avaliador.Avaliador;
+import org.labican.sabia.modelo.contato.ContatoPessoa;
 
 /**
  *

@@ -1,5 +1,6 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.dadospessoais;
 
+import org.labican.sabia.modelo.localizacao.Estado;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;

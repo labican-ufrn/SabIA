@@ -1,4 +1,4 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.unidadeensino;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

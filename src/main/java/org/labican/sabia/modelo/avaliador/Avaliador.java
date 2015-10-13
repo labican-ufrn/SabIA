@@ -1,5 +1,7 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.avaliador;
 
+import org.labican.sabia.modelo.unidadeensino.UnidadeEnsino;
+import org.labican.sabia.modelo.dadospessoais.Pessoa;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -14,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.labican.sabia.modelo.avaliacao.Disponibilidade;
+import org.labican.sabia.modelo.avaliacao.Equipe;
+import org.labican.sabia.modelo.avaliacao.Projeto;
 
 /**
  *

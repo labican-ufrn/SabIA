@@ -1,5 +1,6 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.contato;
 
+import org.labican.sabia.modelo.unidadeensino.UnidadeEnsino;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

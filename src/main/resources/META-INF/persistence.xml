@@ -2,40 +2,40 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="SABIA_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>org.labican.sabia.modelo.Mesorregiao</class>
-    <class>org.labican.sabia.modelo.Macrorregiao</class>
-    <class>org.labican.sabia.modelo.Endereco</class>
-    <class>org.labican.sabia.modelo.Microrregiao</class>
-    <class>org.labican.sabia.modelo.Estado</class>
-    <class>org.labican.sabia.modelo.Municipio</class>
-    <class>org.labican.sabia.modelo.Distrito</class>
-    <class>org.labican.sabia.modelo.Categoria</class>
-    <class>org.labican.sabia.modelo.Localidade</class>
-    <class>org.labican.sabia.modelo.Usuario</class>
-    <class>org.labican.sabia.modelo.TipoStatusAvaliador</class>
-    <class>org.labican.sabia.modelo.RG</class>
-    <class>org.labican.sabia.modelo.StatusAvaliador</class>
-    <class>org.labican.sabia.modelo.TipoContato</class>
-    <class>org.labican.sabia.modelo.Nivel</class>
-    <class>org.labican.sabia.modelo.Avaliador</class>
-    <class>org.labican.sabia.modelo.Permissao</class>
-    <class>org.labican.sabia.modelo.Pessoa</class>
-    <class>org.labican.sabia.modelo.ContatoPessoa</class>
-    <class>org.labican.sabia.modelo.RedeEnsino</class>
-    <class>org.labican.sabia.modelo.UnidadeEnsino</class>
-    <class>org.labican.sabia.modelo.ContatoUnidadeEnsino</class>
-    <class>org.labican.sabia.modelo.Pais</class>
-    <class>org.labican.sabia.modelo.Titulacao</class>
-    <class>org.labican.sabia.modelo.EixoTecnologico</class>
-    <class>org.labican.sabia.modelo.Cargo</class>
-    <class>org.labican.sabia.modelo.Avaliacao</class>
-    <class>org.labican.sabia.modelo.Equipe</class>
-    <class>org.labican.sabia.modelo.SemanaAvaliacao</class>
-    <class>org.labican.sabia.modelo.Viagem</class>
-    <class>org.labican.sabia.modelo.Atividade</class>
-    <class>org.labican.sabia.modelo.Disponibilidade</class>
-    <class>org.labican.sabia.modelo.ConfirmacaoAvaliador</class>
-    <class>org.labican.sabia.modelo.Projeto</class>
+    <class>org.labican.sabia.modelo.localizacao.Macrorregiao</class>
+    <class>org.labican.sabia.modelo.localizacao.Municipio</class>
+    <class>org.labican.sabia.modelo.localizacao.Microrregiao</class>
+    <class>org.labican.sabia.modelo.localizacao.Localidade</class>
+    <class>org.labican.sabia.modelo.localizacao.Categoria</class>
+    <class>org.labican.sabia.modelo.localizacao.Distrito</class>
+    <class>org.labican.sabia.modelo.localizacao.Mesorregiao</class>
+    <class>org.labican.sabia.modelo.localizacao.Endereco</class>
+    <class>org.labican.sabia.modelo.localizacao.Estado</class>
+    <class>org.labican.sabia.modelo.dadospessoais.Pessoa</class>
+    <class>org.labican.sabia.modelo.dadospessoais.Pais</class>
+    <class>org.labican.sabia.modelo.dadospessoais.Permissao</class>
+    <class>org.labican.sabia.modelo.dadospessoais.RG</class>
+    <class>org.labican.sabia.modelo.dadospessoais.Usuario</class>
+    <class>org.labican.sabia.modelo.unidadeensino.RedeEnsino</class>
+    <class>org.labican.sabia.modelo.unidadeensino.UnidadeEnsino</class>
+    <class>org.labican.sabia.modelo.contato.ContatoPessoa</class>
+    <class>org.labican.sabia.modelo.contato.TipoContato</class>
+    <class>org.labican.sabia.modelo.contato.ContatoUnidadeEnsino</class>
+    <class>org.labican.sabia.modelo.avaliador.Avaliador</class>
+    <class>org.labican.sabia.modelo.avaliador.Titulacao</class>
+    <class>org.labican.sabia.modelo.avaliador.StatusAvaliador</class>
+    <class>org.labican.sabia.modelo.avaliador.Nivel</class>
+    <class>org.labican.sabia.modelo.avaliador.Cargo</class>
+    <class>org.labican.sabia.modelo.avaliador.TipoStatusAvaliador</class>
+    <class>org.labican.sabia.modelo.avaliador.EixoTecnologico</class>
+    <class>org.labican.sabia.modelo.viagem.ConfirmacaoAvaliador</class>
+    <class>org.labican.sabia.modelo.viagem.Viagem</class>
+    <class>org.labican.sabia.modelo.viagem.Atividade</class>
+    <class>org.labican.sabia.modelo.avaliacao.Projeto</class>
+    <class>org.labican.sabia.modelo.avaliacao.Equipe</class>
+    <class>org.labican.sabia.modelo.avaliacao.Avaliacao</class>
+    <class>org.labican.sabia.modelo.avaliacao.Disponibilidade</class>
+    <class>org.labican.sabia.modelo.avaliacao.SemanaAvaliacao</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

@@ -1,5 +1,7 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.dadospessoais;
 
+import org.labican.sabia.modelo.dadospessoais.Pessoa;
+import org.labican.sabia.modelo.dadospessoais.Permissao;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;

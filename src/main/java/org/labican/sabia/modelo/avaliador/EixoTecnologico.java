@@ -1,5 +1,6 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.avaliador;
 
+import org.labican.sabia.modelo.avaliador.Avaliador;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;

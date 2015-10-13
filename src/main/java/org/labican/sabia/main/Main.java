@@ -2,7 +2,7 @@ package org.labican.sabia.main;
 
 import java.util.List;
 import org.labican.sabia.dao.JpaController;
-import org.labican.sabia.modelo.Macrorregiao;
+import org.labican.sabia.modelo.localizacao.Macrorregiao;
 import org.labican.sabia.util.JPAUtil;
 
 /**

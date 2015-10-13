@@ -1,4 +1,4 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.viagem;
 
 import java.io.Serializable;
 import java.util.Date;

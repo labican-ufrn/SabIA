@@ -1,4 +1,4 @@
-package org.labican.sabia.modelo;
+package org.labican.sabia.modelo.viagem;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.labican.sabia.modelo.avaliador.Avaliador;
 
 /**
  *
