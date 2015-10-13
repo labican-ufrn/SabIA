@@ -11,6 +11,31 @@
     <class>org.labican.sabia.modelo.Distrito</class>
     <class>org.labican.sabia.modelo.Categoria</class>
     <class>org.labican.sabia.modelo.Localidade</class>
+    <class>org.labican.sabia.modelo.Usuario</class>
+    <class>org.labican.sabia.modelo.TipoStatusAvaliador</class>
+    <class>org.labican.sabia.modelo.RG</class>
+    <class>org.labican.sabia.modelo.StatusAvaliador</class>
+    <class>org.labican.sabia.modelo.TipoContato</class>
+    <class>org.labican.sabia.modelo.Nivel</class>
+    <class>org.labican.sabia.modelo.Avaliador</class>
+    <class>org.labican.sabia.modelo.Permissao</class>
+    <class>org.labican.sabia.modelo.Pessoa</class>
+    <class>org.labican.sabia.modelo.ContatoPessoa</class>
+    <class>org.labican.sabia.modelo.RedeEnsino</class>
+    <class>org.labican.sabia.modelo.UnidadeEnsino</class>
+    <class>org.labican.sabia.modelo.ContatoUnidadeEnsino</class>
+    <class>org.labican.sabia.modelo.Pais</class>
+    <class>org.labican.sabia.modelo.Titulacao</class>
+    <class>org.labican.sabia.modelo.EixoTecnologico</class>
+    <class>org.labican.sabia.modelo.Cargo</class>
+    <class>org.labican.sabia.modelo.Avaliacao</class>
+    <class>org.labican.sabia.modelo.Equipe</class>
+    <class>org.labican.sabia.modelo.SemanaAvaliacao</class>
+    <class>org.labican.sabia.modelo.Viagem</class>
+    <class>org.labican.sabia.modelo.Atividade</class>
+    <class>org.labican.sabia.modelo.Disponibilidade</class>
+    <class>org.labican.sabia.modelo.ConfirmacaoAvaliador</class>
+    <class>org.labican.sabia.modelo.Projeto</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
