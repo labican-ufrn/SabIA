@@ -249,11 +249,11 @@ CREATE TABLE rede_ensino( --Federal, Estadual, Senai, Senac, Senar, Senat.
 CREATE TABLE unidade_ensino(
     id_unidade_ensino               SERIAL          NOT NULL,
     nome_unidade_ensino             TEXT            NOT NULL,
+    sigla                           TEXT,
     cod_sistec_unidade_ensino       INTEGER         NOT NULL UNIQUE,
     cod_inep_unidade_ensino         INTEGER         NOT NULL UNIQUE,
     categoria_administrativa        CHAR(7)         NOT NULL, -- Pública ou Privada.
     cod_rede_ensino                 INTEGER         NOT NULL,
-    cod_tipo_unidade_ensino         INTEGER         NOT NULL,
     cod_endereco                    INTEGER         NOT NULL,
 
     PRIMARY KEY(id_unidade_ensino),
@@ -285,6 +285,7 @@ CREATE TABLE contato_pessoa(
 CREATE TABLE contato_unidade_ensino(
     id_contato_unidade_ensino       SERIAL          NOT NULL,
     valor_contato_unidade_ensino    TEXT            NOT NULL,
+    descricao                       TEXT            NOT NULL,
     cod_tipo_contato                INTEGER         NOT NULL,
     cod_unidade_ensino              INTEGER         NOT NULL,
 
@@ -345,12 +346,16 @@ CREATE TABLE avaliador(
     data_engresso                   INTEGER         NOT NULL, --Necessário para saber a experiência de ensino, a data é referente a quando ele comeu a lecionar.
     siape_avaliador                 TEXT            NOT NULL,
     cod_pessoa                      INTEGER         NOT NULL,
+    cod_titulacao                   INTEGER         NOT NULL,
+    cod_nivel                       INTEGER         NOT NULL,
     cod_unidade_ensino              INTEGER         NOT NULL,
     cod_cargo                       INTEGER         NOT NULL,
     cod_status_avaliador            INTEGER         NOT NULL,
 
     PRIMARY KEY(id_avaliador),
     FOREIGN KEY(cod_pessoa)                         REFERENCES pessoa(id_pessoa),
+    FOREIGN KEY(cod_titulacao)                      REFERENCES titulacao(id_titulacao),
+    FOREIGN KEY(cod_nivel)                          REFERENCES nivel(id_nivel),
     FOREIGN KEY(cod_unidade_ensino)                 REFERENCES unidade_ensino(id_unidade_ensino),
     FOREIGN KEY(cod_cargo)                          REFERENCES cargo(id_cargo),
     FOREIGN KEY(cod_status_avaliador)               REFERENCES status_avaliador(id_status_avaliador)
@@ -395,10 +400,8 @@ CREATE TABLE semana_avaliacao(
 CREATE TABLE disponibilidade(
     id_disponibilidade              SERIAL          NOT NULL,
     data_cadastro                   DATE            NOT NULL,
-    cod_semana_avaliacao            INTEGER         NOT NULL,
 
-    PRIMARY KEY(id_disponibilidade),
-    FOREIGN KEY(cod_semana_avaliacao)               REFERENCES semana_avaliacao(id_semana_avaliacao)
+    PRIMARY KEY(id_disponibilidade)
 );
 
 CREATE TABLE avaliador_disponibilidade( --Entidade fraca que faz o relacionamento entre avaliador e sua disponibilidade.
@@ -451,25 +454,25 @@ CREATE TABLE integrante( --Entidade fraca para fazer o relacionamento dos avalia
 -- *** Fim das tabelas com os dados das avaliações. ***
 
 -- *** Tabelas com os dados de viagem e confirmação de viagem. ***
-CREATE TABLE confirmacao_avaliador(
-    id_confirmacao_avaliador        SERIAL          NOT NULL,
-    status_confirmacao_avaliador    TEXT            NOT NULL, --Confirmado, negado, dependente.
-    data_confirmacao_avaliador      DATE            NOT NULL,
-    cod_avaliador                   INTEGER         NOT NULL,
-
-    PRIMARY KEY(id_confirmacao_avaliador),
-    FOREIGN KEY(cod_avaliador)                      REFERENCES avaliador(id_avaliador)
-);
-
 CREATE TABLE viagem(
     id_viagem                       SERIAL          NOT NULL,
     percurso                        TEXT            NOT NULL, --Locais que a avaliador irá passar para chegar a unidade ensino a ser avaliada. Ida e volda.
     data_saida_viagem               DATE            NOT NULL,
     data_chegada_viagem             DATE            NOT NULL,
-    cod_confirmacao_avaliador       INTEGER         NOT NULL,
 
-    PRIMARY KEY(id_viagem),
-    FOREIGN KEY(cod_confirmacao_avaliador)          REFERENCES confirmacao_avaliador(id_confirmacao_avaliador)
+    PRIMARY KEY(id_viagem)
+);
+
+CREATE TABLE confirmacao_avaliador(
+    id_confirmacao_avaliador        SERIAL          NOT NULL,
+    status_confirmacao_avaliador    TEXT            NOT NULL, --Confirmado, negado, dependente.
+    data_confirmacao_avaliador      DATE            NOT NULL,
+    cod_avaliador                   INTEGER         NOT NULL,
+    cod_viagem                      INTEGER         NOT NULL,
+
+    PRIMARY KEY(id_confirmacao_avaliador),
+    FOREIGN KEY(cod_avaliador)                      REFERENCES avaliador(id_avaliador),
+    FOREIGN KEY(cod_viagem)                         REFERENCES viagem(id_viagem)
 );
 
 CREATE TABLE atividade( --Cada atividade feita pelo avaliador deverá ser registrada posteriormente.
