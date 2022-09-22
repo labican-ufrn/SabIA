@@ -19,7 +19,7 @@
         <jsf.impl.version>2.2.12</jsf.impl.version>
         <jstl.version>1.2</jstl.version>
         <eclipselink.version>2.6.0</eclipselink.version>
-        <postgresql.version>9.4-1201-jdbc41</postgresql.version>
+        <postgresql.version>42.3.7</postgresql.version>
         <junit.version>4.13.1</junit.version>
         <spring.security.version>5.3.0.RELEASE</spring.security.version>
     </properties>
