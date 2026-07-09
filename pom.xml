@@ -21,7 +21,7 @@
         <eclipselink.version>2.6.0</eclipselink.version>
         <postgresql.version>42.3.9</postgresql.version>
         <junit.version>4.13.1</junit.version>
-        <spring.security.version>6.5.9</spring.security.version>
+        <spring.security.version>6.5.11</spring.security.version>
     </properties>
     
     <!-- DEPENDECIES -->
